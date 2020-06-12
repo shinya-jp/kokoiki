@@ -1,24 +1,40 @@
-# README
+# あ、ここ行きたい。
+## サイト概要
+<ul>
+	<li>旅行に行ってきましたではなく、普段どこで遊んでいるのかを紹介する</li>
+	<li>実際にいったところを写真と共に評価をしてもらい、紹介しましょう！</li>
+	<li>投稿された場所のレビューは全ユーザーが見れるようになります。</li>
+	<li>フォロー機能もあるので友人などとおすすめし合いましょう！</li>
+</ul>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サイトテーマ
+<ul>
+	<li>観光サイトなどの県外方向けサイトではなく、地元の方が実際遊びに行った所を紹介し合うSNSとレビューの融合</li>
+</ul>
 
-Things you may want to cover:
 
-* Ruby version
+### テーマを選んだ理由
+<ul>
+	<li>地元にいるときは、遊び行くところがなくみんなどこで遊んでるのかなって思ったことがあった為。</li>
+	<li>上京してきて、観光サイトなどは見るが実際みんなどこで遊んでるか気になった為</li>
+</ul>
 
-* System dependencies
 
-* Configuration
+### ターゲットユーザ
+<ul>
+	<li>１０代〜３０代の遊び場に困った方に</li>
+</ul>
 
-* Database creation
+### 主な利用シーン
+<ul>
+	<li>どこに遊び行こうかなってなった時のお助けします。</li>
+	<li>遊び行って楽しかった所を共有するために。</li>
+</ul>
 
-* Database initialization
 
-* How to run the test suite
+## 設計書
 
-* Services (job queues, cache servers, search engines, etc.)
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1CSi0AHZtkAlTt-cILcGQfqEY-D_dSFZD3Z3_pmULqSo/edit?usp=sharing
 
-* Deployment instructions
 
-* ...
