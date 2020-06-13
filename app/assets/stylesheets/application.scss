@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+.form-red {
+	background-color: red;
+	color: #fff;
+	padding: 0 5px 0 5px;
+	border-radius: 5px;
+}
+.bootstrap-date-only-width {
+  width: auto;
+  display: inline-block;
+}
+

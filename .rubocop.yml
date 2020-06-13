@@ -1,0 +1,43 @@
+inherit_from:
+    - .rubocop_airbnb.yml
+
+# 自動生成されるものはチェック対象から除外する
+AllCops:
+  # rubyのバージョン指定
+  TargetRubyVersion: 2.5
+  # 除外
+  Exclude:
+    - "vendor/**/*" # rubocop config/default.yml
+    - 'config.ru'
+    - 'bin/**'
+    - 'lib/**'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/**/*'
+
+  DisplayCopNames: true
+
+# 追加した規約ファイル読込
+require:
+  - rubocop-rails
+
+# Railsモード
+Rails:
+  Enabled: true
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# 20 行超えるのは migration ファイル以外滅多に無い
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - "db/migrate/*.rb"
+# クラスのコメント必須を無視
+Documentation:
+  Enabled: false
+  # モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
