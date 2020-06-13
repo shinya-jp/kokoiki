@@ -71,3 +71,8 @@ gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 
 gem 'rubocop-airbnb'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
