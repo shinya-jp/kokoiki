@@ -9,7 +9,37 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="padding-top:4.5rem;">
+    <header>
+      <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
+        <div class="container">
+          <div class=navbar-brand>
+            <%= link_to "あ、ここいきたい", root_path %>
+          </div>
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+       </div>
+      </nav>
+    </header>
+    <!-- /header -->
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    <div class="container">
     <%= yield %>
+    <div>
+    <footer>
+    </footer>
   </body>
 </html>
