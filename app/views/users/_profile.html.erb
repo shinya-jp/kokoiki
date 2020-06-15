@@ -1,0 +1,31 @@
+<div class="col-sm-3">
+	<div class="position-fixed">
+		<h2>Profile</h2>
+
+		<%= attachment_image_tag user, :profile_image, :fill,100, 100, format: 'jpeg',fallback: "no_image.jpg" %>
+
+		<table>
+				<tr>
+					<th>ニックネーム</th>
+					<td><%= user.nickname %></td>
+				</tr>
+				<tr>
+					<th>フォロー</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>フォロワー</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th><div class="btn btn-primary">行きたいリスト</div></th>
+				</tr>
+
+		</table>
+		<div class="profile_edit-link">
+			<% if current_user == user %>
+				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success" %>
+			<% end %>
+		</div>
+	</div>
+</div>
