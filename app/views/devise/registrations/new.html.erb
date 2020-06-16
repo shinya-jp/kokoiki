@@ -39,8 +39,8 @@
       <div class="col-sm-2">
         <%= f.label :address, "お住まい" %>
       </div>
-      <div class="col-sm-2">
-        <%= f.select :address, User.addresses.keys,{prompt: "選択してくだい"},class: "custom-select" %>
+      <div class="col-sm-3">
+        <%= f.select :address, User.addresses.keys,{prompt: "選択してください"},class: "custom-select" %>
       </div>
     </div>
 
