@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def end
+  def quit
     @user = User.find(params[:id])
   end
 
