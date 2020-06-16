@@ -1,3 +1,4 @@
 <p>本当に退会しますか？？</p>
+<p>投稿したものは匿名で公開されます</p>
 <%= link_to "退会しない", user_path(@user), class: "btn btn-primary" %>
 <%= link_to "退会する", user_path, method: :delete, "data-confirm"=> "本当に退会しますか？？", class: "btn btn-danger" %>
