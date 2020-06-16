@@ -1,0 +1,72 @@
+
+<h2>プロフィール編集</h2>
+
+<%= form_for @user do |f| %>
+<div class="form">
+
+   <div class="form-group row">
+    	<div class="col-sm-2">
+    		<p>プロフィール画像</p>
+    	</div>
+    	<div class="col-sm-4">
+    		<!-- 画像プレビュー -->
+    		<%= f.label :profile_image do %>
+    			<%= attachment_image_tag @user, :profile_image, id: "preview", size: '100x100',  fallback: "no_image.jpg" %>
+    		<% end %>
+    		<%= f.attachment_field :profile_image, id: :profile_img %>
+    	</div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <%= f.label :nickname, "ニックネーム", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-5">
+        <%= f.text_field :nickname, :placeholder=>"例）ココイキ", autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label>性別</label>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :gender, "男性" %>
+        <%= f.label :gender, "男性", value:"男性", class: "form-check-label" %>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :gender, "女性" %>
+        <%= f.label :gender, "女性", value:"女性", class: "form-check-label" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <%= f.label :birthday, "生年月日", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.date_select :birthday, {use_month_numbers: true, start_year:1930, end_year:(Time.now.year-10), default: Date.new(1990, 1, 1),date_separator: ' / '}, {class: "form-control bootstrap-date-only-width"} %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <%= f.label :address, "お住まい" %>
+      </div>
+      <div class="col-sm-2">
+        <%= f.select :address, User.addresses.keys,{prompt: "選択してくだい"},class: "custom-select" %>
+      </div>
+    </div>
+
+	<div class="form-group row">
+		<div class="offset-sm-2">
+	      <%= f.submit "保存する", class: "btn btn-success" %>
+	    </div>
+	    <!-- 退会ページリンク -->
+	    <div class="offset-sm-5">
+		<%= link_to "退会する", end_path, class: "btn btn-sm btn-danger" %>
+		</div>
+	</div>
+</div>
+<% end %>
+
