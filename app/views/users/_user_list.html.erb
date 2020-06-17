@@ -1,7 +1,0 @@
-<% users.each do |user| %>
-	<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg" %>
-	<%= user.nickname%>
-	<!-- 後で実装 -->
-	<P>年代</P>
-	<p>投稿数</p>
-<% end %>
