@@ -11,26 +11,21 @@
 				</tr>
 				<tr>
 					<th>フォロー</th>
-					<td><%= link_to user.following.count, following_user_path %></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>フォロワー</th>
-					<td><%= link_to user.followers.count, followers_user_path %></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th><div class="btn btn-primary">行きたいリスト</div></th>
 				</tr>
 
 		</table>
-
-		<% if current_user == user %>
-			<div class="profile_edit-link">
+		<div class="profile_edit-link">
+			<% if current_user == user %>
 				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success" %>
-			</div>
-		<% else %>
-			<%= render 'follow', user: @user %>
-		<% end %>
-
-		<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-danger" %>
+			<% end %>
+		</div>
 	</div>
 </div>
