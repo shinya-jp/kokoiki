@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2020_06_16_133639) do
     t.string "name"
     t.integer "genre"
     t.integer "prefecture"
-    t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_133639) do
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "body"
-    t.string "review_imagera_id"
+    t.string "review_image_id"
     t.integer "place_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

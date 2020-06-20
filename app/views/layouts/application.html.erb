@@ -20,7 +20,10 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
               </li>
             <% else %>
               <li class="nav-item">

@@ -11,9 +11,16 @@ Rails.application.routes.draw do
   end
   get 'users/:id/quit' => 'users#quit', as:'quit'
   resources :places, only: [:new, :create, :show] do
-    resources :reviews
-    get 'reviews/confirm' => 'reviews#confirm', as: 'review_confirm'
+    collection do
+      get :confirm
+    end
+    resources :reviews do
+    collection do
+      get :confirm
+    end
   end
+  end
+  # get 'places/confirm' => 'places#confirm'
 
 
 end

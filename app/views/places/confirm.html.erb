@@ -1,0 +1,26 @@
+<% if @places.count == 0%>
+
+	<h3>該当の場所が無かった為、場所を新規登録します</h3>
+	<div class="place">
+		<h5>名前</h5>
+		<%= @place.name %>
+		<h5>場所</h5>
+		<%= @place.genre %>
+		<h5>ジャンル</h5>
+		<b><%= @place.prefecture %></b>
+	</div>
+
+	<%= form_with(model: @place, local: true) do |f| %>
+		<%= f.hidden_field :name %>
+		<%= f.hidden_field :prefecture, value: @place.prefecture %>
+		<%= f.hidden_field :genre, value: @place.genre %>
+		<%= f.submit "新規登録する" %>
+	<% end %>
+<% else %>
+	<h2>もしかしてこちらと同じですか？？</h2>
+	 <% @places.each do |place| %>
+	 	<%= place.name %>
+	 	<%= place.genre %>
+	 	<%= place.prefecture %>
+	 <% end %>
+<% end %>

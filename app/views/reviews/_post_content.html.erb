@@ -1,0 +1,53 @@
+<div class="review">
+	<%= link_to user_path(@user) do %>
+	<div class="review-profile">
+		<div class="review-profie_image col-sm-1">
+			<%= attachment_image_tag user, :profile_image, :fill, 70, 70, format: 'jpeg',fallback: "no_image_id"  %>
+		</div>
+		<div class="offset-sm-2">
+			<div class="review-profile_name">
+				<b><%= user.nickname %></b>
+			</div>
+			<div class="review-profile_info">
+				<i><%= user.address %>　/</i>
+				<% if @age <= 19 %>
+					<i>10代</i>
+				<% elsif @age <= 29 %>
+					<i>20代</i>
+				<% elsif @age <= 39 %>
+					<i>30代</i>
+				<% elsif @age <= 49 %>
+					<i>40代</i>
+				<% elsif @age <= 59 %>
+					<i>50代</i>
+				<% elsif@age <= 69 %>
+					<i>60代</i>
+				<% elsif @age <= 79 %>
+					<i>70代</i>
+				<% elsif@age <= 89 %>
+					<i>80代</i>
+				<% elsif @age <= 99 %>
+					<i>90代</i>
+				<% elsif @age >= 100 %>
+				 	<i>100代</i>
+				<% end %>
+				<i>　/<%= user.gender %></i>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<div class="offset-sm-2">
+		<div class="review-place">
+			<h4><%= review.place.name %></h4>
+			<p><%= review.place.prefecture %></p>
+			<p><%= review.place.genre %></p>
+		</div>
+	</div>
+	<div class="offset-sm-2">
+		<div class="review-text">
+			<h5><%= review.title %></h5>
+			<p><%= review.body %></p>
+			<%= attachment_image_tag review, :review_image, :fill, 80, 80, format: 'jpeg' %>
+		</div>
+	</div>
+</div>
