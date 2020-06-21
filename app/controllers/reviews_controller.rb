@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
   def new
     @place = Place.find(params[:place_id])
     @review = Review.new
+    @review.review_images.build
   end
 
   def create
@@ -41,6 +42,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :review_profile)
+    params.require(:review).permit(:title, :body, :review_profile, review_images_images:[])
   end
 end

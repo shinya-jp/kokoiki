@@ -33,30 +33,13 @@
 	padding-bottom: 100%;
 }
 
-.review {
-	border: 2px solid #666;
-	padding: 15px 10px 0 10px;
-	border-radius: 20px;
-	margin-bottom: 15px;
+.form{
+	margin-top: 50px;
 }
-.review-profile {
-	padding-bottom: 5px;
-	border-bottom: 2px solid #eeeeee;
-}
-.review-profie_image {
-	float: left;
-}
-.review-profile_info {
-	margin-top: 20px;
-}
-.review-place h4 {
-	display: inline;
-}
-.review-place p {
-	display: inline;
-	margin-left: 20px;
-}
-.review-text h5 {
-	padding-top: 8px;
-	font-weight: bolder;
+.form-group span {
+	background-color: red;
+	color: white;
+	padding: 3px 5px 3px 5px;
+	border-radius: 5px;
+	font-size: 70%;
 }

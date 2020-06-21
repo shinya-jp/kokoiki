@@ -1,14 +1,14 @@
-<div class="review">
-	<%= link_to user_path(@user) do %>
-	<div class="review-profile">
-		<div class="review-profie_image col-sm-1">
-			<%= attachment_image_tag user, :profile_image, :fill, 70, 70, format: 'jpeg',fallback: "no_image_id"  %>
+<div class="reviews">
+	<%= link_to user_path(user) do %>
+	<div class="reviews__profile">
+		<div class="reviews__profile-img col-sm-1">
+			<%= attachment_image_tag user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "70x70" %>
 		</div>
 		<div class="offset-sm-2">
-			<div class="review-profile_name">
+			<div class="reviews__profile-name">
 				<b><%= user.nickname %></b>
 			</div>
-			<div class="review-profile_info">
+			<div class="reviews__profile-info">
 				<i><%= user.address %>　/</i>
 				<% if @age <= 19 %>
 					<i>10代</i>
@@ -37,17 +37,19 @@
 	</div>
 	<% end %>
 	<div class="offset-sm-2">
-		<div class="review-place">
-			<h4><%= review.place.name %></h4>
-			<p><%= review.place.prefecture %></p>
-			<p><%= review.place.genre %></p>
+		<div class="reviews__place">
+			<h4 class="reviews__place_name"><%= review.place.name %></h4>
+			<p class="reviews__place_info"><%= review.place.prefecture %></p>
+			<p class="reviews__place_info"><%= review.place.genre %></p>
 		</div>
 	</div>
 	<div class="offset-sm-2">
-		<div class="review-text">
+		<div class="reviews__text">
 			<h5><%= review.title %></h5>
 			<p><%= review.body %></p>
-			<%= attachment_image_tag review, :review_image, :fill, 80, 80, format: 'jpeg' %>
+			<% review.review_images.each do |image| %>
+			<%= attachment_image_tag image, :image, :fill, 80, 80, format: 'jpeg' %>
+			<% end %>
 		</div>
 	</div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_133639) do
+ActiveRecord::Schema.define(version: 2020_06_21_095809) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
@@ -30,10 +30,16 @@ ActiveRecord::Schema.define(version: 2020_06_16_133639) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "review_images", force: :cascade do |t|
+    t.integer "review_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "body"
-    t.string "review_image_id"
     t.integer "place_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

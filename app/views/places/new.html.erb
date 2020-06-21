@@ -1,10 +1,12 @@
-
+<div class="places offset-sm-1">
 <h2>レビュー投稿</h2>
 <P>既に登録されてる場所かお調べします。</P>
+	<div class="form">
 		<%= search_form_for @q, url: confirm_places_path do |f| %>
 			<div class="form-group row">
 				<div class="col-sm-2">
 					<%= f.label :name, "場所の名前", class: "col-form-label" %>
+					<span>必須</span>
 				</div>
 				<div class="col-sm-5">
 					<%= f.text_field :name_eq, autofocus: true, class: "form-control" %>
@@ -13,7 +15,8 @@
 
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<%= f.label :prefecture, "都道府県" %>
+					<%= f.label :prefecture, "都道府県　" %>
+					<span>必須</span>
 				</div>
 				<div class="col-sm-3">
 					<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]},{prompt:"選択してください"}, class: "custom-select" %>
@@ -22,7 +25,8 @@
 
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<label>ジャンル</label>
+					<label>ジャンル　</label>
+					<span>必須</span>
 				</div>
 				<div class="form-check">
 					<%= f.radio_button :genre_eq, "1" %>
@@ -34,9 +38,13 @@
 				</div>
 			</div>
 
-			<div class="action">
-				<%= f.submit %>
-			</div>
+			<div class="form-group row">
+			    <div class="offset-sm-2 col-sm-10">
+			      <%= f.submit "検索", class: "btn btn-primary" %>
+			    </div>
+			  </div>
 		<% end %>
+	</div>
+</div>
 
 
