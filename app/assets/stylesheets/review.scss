@@ -1,0 +1,34 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.review {
+
+	&__place {
+		margin-top: 30px;
+	}
+
+	&__place h3 {
+		display: inline;
+	}
+
+	&__place p {
+		display: inline;
+		margin-left: 20px;
+	}
+
+	&__form-title {
+		font-size: 15px;
+	}
+
+	&__form-img p:nth-child(odd) {
+		float: left;
+	}
+
+	&__none {
+		margin-top: 30%;
+ 	   	color: #999;
+    	text-align: center;
+	}
+
+}

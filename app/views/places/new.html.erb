@@ -5,8 +5,10 @@
 		<%= search_form_for @q, url: confirm_places_path do |f| %>
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<%= f.label :name, "場所の名前", class: "col-form-label" %>
-					<span>必須</span>
+					<div class="form-tile">
+						<%= f.label :name, "場所の名前", class: "col-form-label" %>
+						<span>必須</span>
+					</div>
 				</div>
 				<div class="col-sm-5">
 					<%= f.text_field :name_eq, autofocus: true, class: "form-control" %>
