@@ -10,25 +10,25 @@
 			</div>
 			<div class="reviews__profile-info">
 				<i><%= user.address %>　/</i>
-				<% if @age <= 19 %>
+				<% if age <= 19 %>
 					<i>10代</i>
-				<% elsif @age <= 29 %>
+				<% elsif age <= 29 %>
 					<i>20代</i>
-				<% elsif @age <= 39 %>
+				<% elsif age <= 39 %>
 					<i>30代</i>
-				<% elsif @age <= 49 %>
+				<% elsif age <= 49 %>
 					<i>40代</i>
-				<% elsif @age <= 59 %>
+				<% elsif age <= 59 %>
 					<i>50代</i>
-				<% elsif@age <= 69 %>
+				<% elsif age <= 69 %>
 					<i>60代</i>
-				<% elsif @age <= 79 %>
+				<% elsif age <= 79 %>
 					<i>70代</i>
-				<% elsif@age <= 89 %>
+				<% elsif age <= 89 %>
 					<i>80代</i>
-				<% elsif @age <= 99 %>
+				<% elsif age <= 99 %>
 					<i>90代</i>
-				<% elsif @age >= 100 %>
+				<% elsif age >= 100 %>
 				 	<i>100代</i>
 				<% end %>
 				<i>　/<%= user.gender %></i>
@@ -38,17 +38,35 @@
 	<% end %>
 	<div class="offset-sm-2">
 		<div class="reviews__place">
-			<h4 class="reviews__place_name"><%= review.place.name %></h4>
-			<p class="reviews__place_info"><%= review.place.prefecture %></p>
-			<p class="reviews__place_info"><%= review.place.genre %></p>
+			<%= link_to place_path(review.place) do %>
+				<h4 class="reviews__place_name"><%= review.place.name %></h4>
+				<p class="reviews__place_info"><%= review.place.prefecture %></p>
+				<p class="reviews__place_info"><%= review.place.genre %></p>
+			<% end %>
 		</div>
 	</div>
 	<div class="offset-sm-2">
+		<div class="reviews__rate" id="review_star-<%= review.id %>"><b><%= review.rate %>点</b></div>
+			<script>
+	          $('#review_star-<%= review.id %>').raty({
+	            size: 36,
+	            starOff:  '<%= asset_path('star-off.png') %>',
+	            starOn : '<%= asset_path('star-on.png') %>',
+	            starHalf: '<%= asset_path('star-half.png') %>',
+	            half: true,
+	            readOnly: true,
+	            score: <%= review.rate %>,
+	          });
+          </script>
+	</div>
+	<div class="offset-sm-2">
 		<div class="reviews__text">
-			<h5><%= review.title %></h5>
-			<p><%= review.body %></p>
-			<% review.review_images.each do |image| %>
-			<%= attachment_image_tag image, :image, :fill, 80, 80, format: 'jpeg' %>
+			<%= link_to place_review_path(review) do %>
+				<h5><%= review.title %></h5>
+				<p><%= simple_format(review.body) %></p>
+				<% review.review_images.each do |image| %>
+				<%= attachment_image_tag image, :image, :fill, 80, 80, format: 'jpeg' %>
+				<% end %>
 			<% end %>
 		</div>
 	</div>

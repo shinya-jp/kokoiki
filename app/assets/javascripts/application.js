@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
+//= require jquery.raty
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -34,3 +35,4 @@ $(function() {
     });
   });
 });
+

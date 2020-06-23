@@ -33,5 +33,25 @@
 	&__new-link {
 		margin-top: 15px;
 	}
+// show.html
+	&__review-link {
+		margin: 0 0 0 auto;
+    	padding-right: 100px;
+	}
+
+	&__info {
+		padding-bottom: 10px;
+		border-bottom: 2px solid #eee;
+		margin-bottom: 15px;
+	}
+
+	&__rate img {
+		width: 30px;
+	}
+
+	&__rate b {
+		font-size: 22px;
+		padding-right: 10px;
+	}
 
 }

@@ -5,7 +5,7 @@
 		<h1>マイレビュー</h1>
 		<% if @reviews.count > 0 %>
 			<% @reviews.each do |review| %>
-				<%= render 'reviews/post_content', user: @user, review: review %>
+				<%= render 'reviews/post_content', user: @user, review: review, age: @age %>
 			<% end %>
 		<% else %>
 			<h3 class="review__none">レビューをしよう！！！</h3>

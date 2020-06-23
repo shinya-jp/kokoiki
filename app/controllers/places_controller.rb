@@ -11,6 +11,10 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    @reviews = @place.reviews.reverse_order
+    @review = Review.find(params[:id])
+    user = @review.user
+    @age = ( Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def confirm

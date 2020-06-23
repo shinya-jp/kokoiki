@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resorce)
     user_path(resorce)
   end
+
   private
 
   def configure_permitted_parameters

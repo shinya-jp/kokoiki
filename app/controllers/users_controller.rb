@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews
+    @reviews = @user.reviews.reverse_order
     @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
