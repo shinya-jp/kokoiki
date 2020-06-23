@@ -1,7 +1,46 @@
-<% users.each do |user| %>
-	<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg" %>
-	<%= user.nickname%>
-	<!-- 後で実装 -->
-	<P>年代</P>
-	<p>投稿数</p>
-<% end %>
+<table class="follow__list">
+	<thead>
+		<tr>
+			<th>プロフィール写真</th>
+			<th>ニックネーム</th>
+			<th>年代</th>
+			<th>投稿数</th>
+			<th></th>
+		</tr>
+	</thead>
+	<% users.each do |user| %>
+	<tbody>
+		<tr>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 65, 65, format: "jpeg", fallback: "no_image.jpg" %></td>
+			<td><%= link_to user_path(user) do %>
+				<%= user.nickname%>
+				<% end %></td>
+			<td><% if @age <= 19 %>
+					10代
+				<% elsif @age <= 29 %>
+					20代
+				<% elsif @age <= 39 %>
+					30代
+				<% elsif @age <= 49 %>
+					40代
+				<% elsif @age <= 59 %>
+					50代
+				<% elsif@age <= 69 %>
+					60代
+				<% elsif @age <= 79 %>
+					70代
+				<% elsif@age <= 89 %>
+					80代
+				<% elsif @age <= 99 %>
+					90代
+				<% elsif @age >= 100 %>
+					100代
+				<% end %></td>
+			<td><%= @user.reviews.count %></td>
+
+
+			<td><%= render 'follow',user: user %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>

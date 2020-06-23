@@ -1,2 +1,33 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
+<div class="places">
+	<div class="row">
+			<h1><%= @place.name %></h1>
+		<% if user_signed_in? %>
+			<div class="places__review-link">
+				<%= link_to "ここのレビューをする", new_place_review_path(@place.id), class: "btn btn-warning" %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="places__rate row" id="reviews_star-<%= @review.id %>"><b><%= @reviews.average(:rate).round(1) %>点</b>
+		<script>
+          	$('#reviews_star-<%= @review.id %>').raty({
+	            size: 36,
+	            starOff:  '<%= asset_path('star-off.png') %>',
+	            starOn : '<%= asset_path('star-on.png') %>',
+	            starHalf: '<%= asset_path('star-half.png') %>',
+	            half: true,
+	            readOnly: true,
+	            score: <%= @reviews.average(:rate).round(1) %>,
+         	 });
+          </script>
+	</div>
+	<div class="places__info row">
+		<i><%= @place.genre %></i>
+		<i>　/　<%= @place.prefecture %>　/　</i>
+		<i>レビュー<%= @reviews.count %>件</i>
+	</div>
+	<h3>レビュー 一覧</h3>
+	<% @reviews.each do |review| %>
+		<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
+	<% end %>
+</div>

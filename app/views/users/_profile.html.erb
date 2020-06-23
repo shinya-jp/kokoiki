@@ -1,13 +1,12 @@
-<div class="col-sm-3">
+<div class="col-sm-3 profile">
 	<div class="position-fixed">
 		<h2>Profile</h2>
 
 		<%= attachment_image_tag user, :profile_image, :fill,100, 100, format: 'jpeg',fallback: "no_image.jpg" %>
 
-		<table>
+		<table class="profile__list">
 				<tr>
-					<th>ニックネーム</th>
-					<td><%= user.nickname %></td>
+					<th><%= user.nickname %></th>
 				</tr>
 				<tr>
 					<th>フォロー</th>
@@ -17,20 +16,19 @@
 					<th>フォロワー</th>
 					<td><%= link_to user.followers.count, followers_user_path %></td>
 				</tr>
-				<tr>
-					<th><div class="btn btn-primary">行きたいリスト</div></th>
-				</tr>
-
 		</table>
-
 		<% if current_user == user %>
-			<div class="profile_edit-link">
-				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success" %>
+			<div class="profile__btn">
+				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success " %>
 			</div>
 		<% else %>
-			<%= render 'follow', user: @user %>
+			<div class="profile__btn">
+				<%= render 'users/follow', user: user%>
+			</div>
 		<% end %>
-
-		<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-danger" %>
+		<div class="profile__btn btn btn-primary">行きたいリスト</div>
+		<div class="profile__btn">
+			<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-warning btn-block" %>
+		</div>
 	</div>
 </div>

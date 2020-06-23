@@ -27,3 +27,20 @@
   display: inline-block;
 }
 
+.position-fixed {
+	border-right: 1px solid #000;
+	padding-right: 20px;
+	padding-bottom: 100%;
+}
+
+.form{
+	margin-top: 50px;
+}
+.form-red {
+	background-color: red;
+	color: white;
+	padding: 3px 5px 3px 5px;
+	border-radius: 5px;
+	font-size: 70%;
+}
+

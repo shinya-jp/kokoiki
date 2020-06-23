@@ -2,42 +2,13 @@
 	<%= render 'profile', user: @user %>
 	<div class="col-sm-9">
 
-	<h1>Users#show</h1>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
-		<p>Find me in app/views/users/show.html.erb</p>
+		<h1>マイレビュー</h1>
+		<% if @reviews.count > 0 %>
+			<% @reviews.each do |review| %>
+				<%= render 'reviews/post_content', user: @user, review: review, age: @age %>
+			<% end %>
+		<% else %>
+			<h3 class="review__none">レビューをしよう！！！</h3>
+		<% end %>
 	</div>
 </div>

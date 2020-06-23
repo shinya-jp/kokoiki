@@ -1,2 +1,6 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="row">
+	<%= render 'users/profile', user: @review.user %>
+	<div class="col-sm-9">
+		<%= render 'reviews/post_content', user: @user, review: @review, age: @age %>
+	</div>
+</div>
