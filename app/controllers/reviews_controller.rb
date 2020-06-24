@@ -3,10 +3,11 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    place = Place.find(params[:place_id])
     @review = Review.find(params[:id])
     @user = @review.user
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
-    @place = Place.find_by(id: params[:place_id])
+    @age = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @review_comment = ReviewComment.new
   end
 
   def new
@@ -42,6 +43,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :review_profile, :rate, review_images_images:[])
+    params.require(:review).permit(:title, :body, :review_profile, :rate, review_images_images: [])
   end
 end

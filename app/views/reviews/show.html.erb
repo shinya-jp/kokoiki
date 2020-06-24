@@ -1,6 +1,12 @@
 <div class="row">
 	<%= render 'users/profile', user: @review.user %>
 	<div class="col-sm-9">
-		<%= render 'reviews/post_content', user: @user, review: @review, age: @age %>
+		<div class="review__show">
+			<%= render 'reviews/post_content', user: @user, review: @review, age: @age %>
+		</div>
+		<div class="review__comment">
+			
+		</div>
 	</div>
 </div>
+

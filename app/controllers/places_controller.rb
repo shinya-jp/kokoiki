@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
     @reviews = @place.reviews.reverse_order
     @review = Review.find(params[:id])
     user = @review.user
-    @age = ( Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @age = (Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def confirm
@@ -27,6 +27,7 @@ class PlacesController < ApplicationController
   end
 
   private
+
   def search_params
     params.require(:q).permit!
   end

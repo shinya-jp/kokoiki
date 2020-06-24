@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.reverse_order
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @age = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def edit
@@ -27,13 +26,13 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @users = @user.following
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @age = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @age = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def quit

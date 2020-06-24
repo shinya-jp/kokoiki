@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_045444) do
+ActiveRecord::Schema.define(version: 2020_06_24_010824) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 2020_06_23_045444) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "review_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "review_images", force: :cascade do |t|
     t.integer "review_id"
     t.string "image_id"
@@ -39,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_06_23_045444) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
-    t.string "body"
+    t.text "body"
     t.integer "place_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
