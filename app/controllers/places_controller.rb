@@ -1,4 +1,6 @@
 class PlacesController < ApplicationController
+  before_action :check_search_params, only: :confirm
+
   def new
     @q = Place.ransack(params[:q])
   end
@@ -12,9 +14,7 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @reviews = @place.reviews.reverse_order
-    @review = Review.find(params[:id])
-    user = @review.user
-    @age = (Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @rate_avg = @reviews.average(:rate).round(1)
   end
 
   def confirm
@@ -34,5 +34,11 @@ class PlacesController < ApplicationController
 
   def place_params
     params.require(:place).permit(:name, :genre, :prefecture)
+  end
+
+  def check_search_params
+    if search_params['name_eq'].blank? || search_params['prefecture_eq'].blank? || search_params['genre_eq'].blank?
+      return redirect_to new_place_path, notice: 'please input searching words'
+    end
   end
 end

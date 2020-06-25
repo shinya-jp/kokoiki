@@ -11,31 +11,33 @@
 
   <body style="padding-top:4.5rem;">
     <header>
-      <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
-        <div class="container">
-          <div class=navbar-brand>
-            <%= link_to "あ、ここいきたい", root_path %>
-          </div>
-          <!-- ナビ -->
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-              </li>
-            <% end %>
-          </ul>
-       </div>
-      </nav>
+      <div class="header">
+        <nav class="header__color navbar navbar-expand navbar-light fixed-top">
+          <div class="container">
+            <div class="header__title navbr-brand">
+              <%= link_to "いつもの場所", root_path %>
+            </div>
+            <!-- ナビ -->
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+         </div>
+        </nav>
+      </div>
     </header>
     <!-- /header -->
        <p class="notice"><%= notice %></p>

@@ -46,4 +46,9 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def age_decade
+    age = ( Date.today.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
+    "#{age.to_s.chop}0代"
+  end
 end

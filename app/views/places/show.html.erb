@@ -8,19 +8,22 @@
 		<% end %>
 	</div>
 
-	<div class="places__rate row" id="reviews_star-<%= @review.id %>"><b><%= @reviews.average(:rate).round(1) %>点</b>
-		<script>
-          	$('#reviews_star-<%= @review.id %>').raty({
-	            size: 36,
-	            starOff:  '<%= asset_path('star-off.png') %>',
-	            starOn : '<%= asset_path('star-on.png') %>',
-	            starHalf: '<%= asset_path('star-half.png') %>',
-	            half: true,
-	            readOnly: true,
-	            score: <%= @reviews.average(:rate).round(1) %>,
-         	 });
-          </script>
-	</div>
+		<% if @reviews.count > 0 %>
+		<div class="places__rate row" id="reviews_star_avg"><b><%= @rate_avg %>点</b>
+			<script>
+	          	$('#reviews_star_avg').raty({
+		            size: 36,
+		            starOff:  '<%= asset_path('star-off.png') %>',
+		            starOn : '<%= asset_path('star-on.png') %>',
+		            starHalf: '<%= asset_path('star-half.png') %>',
+		            half: true,
+		            readOnly: true,
+		            score: <%= @reviews.average(:rate).round(1) %>,
+	         	 });
+	          </script>
+		</div>
+		<% end %>
+
 	<div class="places__info row">
 		<i><%= @place.genre %></i>
 		<i>　/　<%= @place.prefecture %>　/　</i>
