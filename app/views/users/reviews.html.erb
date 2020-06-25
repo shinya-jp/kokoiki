@@ -1,4 +1,6 @@
-<div class="reviews">
+<h3>レビュー 一覧</h3>
+	<% @reviews.each do |review| %>
+		<div class="reviews">
 	<%= link_to user_path(user) do %>
 	<div class="reviews__profile">
 		<div class="reviews__profile-img col-sm-1">
@@ -10,9 +12,8 @@
 			</div>
 			<div class="reviews__profile-info">
 				<i><%= user.address %>　/</i>
-				    <i><%= user.age_decade %></i>
+	
 				<i>　/<%= user.gender %></i>
-
 			</div>
 		</div>
 	</div>
@@ -42,7 +43,7 @@
 	</div>
 	<div class="offset-sm-2">
 		<div class="reviews__text">
-			<%= link_to place_review_path(place_id: review.place.id, id: review.id) do %>
+			<%= link_to place_review_path(review) do %>
 				<h5><%= review.title %></h5>
 				<p><%= simple_format(review.body) %></p>
 				<% review.review_images.each do |image| %>
@@ -52,3 +53,4 @@
 		</div>
 	</div>
 </div>
+	<% end %>
