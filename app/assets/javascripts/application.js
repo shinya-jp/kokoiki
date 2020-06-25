@@ -19,8 +19,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(function() {
-  $(document).on('turbolinks:load',() => {
+$(document).on('turbolinks:load', function () {
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -33,6 +32,5 @@ $(function() {
     $("#profile_img").change(function(){
         readURL(this);
     });
-  });
 });
 

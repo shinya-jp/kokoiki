@@ -1,12 +1,15 @@
 class ReviewsController < ApplicationController
   def index
-
   end
 
   def show
-    place = Place.find(params[:place_id])
     @review = Review.find(params[:id])
-    @review_comment = ReviewComment.new
+    if @review.place_id == params[:place_id].to_i
+      @place = @review.place
+      @review_comment = ReviewComment.new
+    else
+      redirect_to place_path(params[:place_id])
+    end
   end
 
   def new

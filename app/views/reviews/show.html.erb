@@ -2,11 +2,46 @@
 	<%= render 'users/profile', user: @review.user %>
 	<div class="col-sm-9">
 		<div class="review__show">
-			<%= render 'reviews/post_content', user: @user, review: @review, age: @age %>
+			<%= render 'reviews/post_content', user: @review.user, review: @review%>
 		</div>
-		<div class="review__comment">
-			
+			<div class="review__comment">
+				<%= form_with(model: [@place, @review, @review_comment], local: true) do |f| %>
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="form-group">
+								<%= f.text_area :comment, rows:3, class: "form-control" %>
+							</div>
+						</div>
+						<div class="col-sm-1 align-self-end">
+							<div class="form-group">
+								<%= f.submit "送信する", class: "btn btn-info" %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="review__comments">
+				<% @review.review_comments.each do |review_comment| %>
+				<div class="review__comment-user">
+					<div class="review__cooment-usere-img col-sm-1">
+						<%= attachment_image_tag review_comment.user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "50x50" %>
+					</div>
+					<div class="offset-sm-2">
+						<div class="review__comment-user-name">
+							<b><%= review_comment.user.nickname %></b>
+						</div>
+						<div class="review__comment-user-info">
+							<%= review_comment.created_at.strftime('%Y/%m/%d/ %H:%M') %>
+							
+						</div>
+					</div>
+				</div>
+				<div class="review__comment-list">
+					<div class="offset-sm-2">
+						<%= simple_format(review_comment.comment) %>
+					</div>
+				</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
 </div>
-
