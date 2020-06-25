@@ -1,12 +1,11 @@
 class ReviewsController < ApplicationController
   def index
+
   end
 
   def show
     @review = Review.find(params[:id])
     @user = @review.user
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
-    @place = Place.find_by(id: params[:place_id])
   end
 
   def new

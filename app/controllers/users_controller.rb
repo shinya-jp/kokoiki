@@ -36,12 +36,17 @@ class UsersController < ApplicationController
     @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
+  def reviews
+    @users = current_user.following
+
+    @reviews = @users.review.all
+  end
+
   def quit
     @user = User.find(params[:id])
   end
 
   private
-
   def user_params
     params.require(:user).permit(:nickname, :gender, :birthday, :address, :profile_image)
   end

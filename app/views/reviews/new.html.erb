@@ -8,7 +8,7 @@
 		<p>/<%= @place.genre %></p>
 	</div>
 	<div class="review__form form">
-		<%= form_with(model: [@place, @review]) do |f| %>
+		<%= form_with(model: [@place, @review], local: true) do |f| %>
 		<div class="from-group row">
 			<div class="col-sm-2">
 				<h4>評価</h4>
@@ -41,12 +41,12 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="review__form-img">
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
-					<p><%= f.attachment_field :review_images_images, multiple: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
+					<p><%= f.attachment_field :review_images_images, multiple: true, direct: true, presigned: true %></p>
 				</div>
 			</div>
 		</div>
