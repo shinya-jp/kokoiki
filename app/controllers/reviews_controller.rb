@@ -1,11 +1,16 @@
 class ReviewsController < ApplicationController
   def index
-
   end
 
   def show
     @review = Review.find(params[:id])
-    @user = @review.user
+    if @review.place_id == params[:place_id].to_i
+      @place = @review.place
+      @review_comments = @review.review_comments.reverse_order
+      @review_comment = ReviewComment.new
+    else
+      redirect_to place_path(params[:place_id]),notice: '不正なURLです'
+    end
   end
 
   def new
@@ -41,6 +46,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :review_profile, :rate, review_images_images:[])
+    params.require(:review).permit(:title, :body, :review_profile, :rate, review_images_images: [])
   end
 end

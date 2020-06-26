@@ -19,16 +19,18 @@
 		</table>
 		<% if current_user == user %>
 			<div class="profile__btn">
-				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success " %>
+				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-green btn-block" %>
 			</div>
 		<% else %>
 			<div class="profile__btn">
 				<%= render 'users/follow', user: user%>
 			</div>
 		<% end %>
-		<div class="profile__btn btn btn-primary">行きたいリスト</div>
 		<div class="profile__btn">
-			<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-warning btn-block" %>
+			<%= link_to "いいねリスト", favorite_user_path(user), class: "btn btn-orange btn-block" %>
+		</div>
+		<div class="profile__btn">
+			<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-yellow btn-block" %>
 		</div>
 	</div>
 </div>

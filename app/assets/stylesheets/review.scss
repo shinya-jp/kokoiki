@@ -33,5 +33,30 @@
 
 	&__rate img {
 	width: 30px;
-}
+	}
+
+	// review.show
+
+	&__comment-user {
+		padding-bottom: 5px;
+	}
+
+	&__cooment-usere-img {
+		float: left;
+	}
+
+	&__comment-info {
+		color: #c0c0c0;
+		margin-top: 8px;
+	}
+
+	&__comment-list {
+		padding-bottom: 5px;
+		margin-bottom: 5px;
+		border-bottom: 2px solid #eeeeee;
+	}
+
+	&__comment-delete {
+		float: right;
+	}
 }

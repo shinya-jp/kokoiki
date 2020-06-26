@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :reviews
+  has_many :favorites, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
+
 
   enum gender: { 男性: 1, 女性: 2 }
   enum address: {
@@ -46,8 +49,9 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  # ユーザーの生年月日から年代表示
   def age_decade
-    age = ( Date.today.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
+    age = (Date.today.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
     "#{age.to_s.chop}0代"
   end
 end

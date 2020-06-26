@@ -50,8 +50,22 @@
 		margin: 5px 0 5px 0;
 		width: 100%
 	}
-	&__rate b {
+	&__rate p {
 		font-size: 20px;
 		padding-right: 10px;
+		float: left;
+	}
+
+	&__text {
+		clear: both;
+	}
+
+	&__subaction {
+		margin-top: 10px;
+		margin-bottom: 6px;
+	}
+	&__favo {
+		float: left;
+		padding-right: 13px;
 	}
 }

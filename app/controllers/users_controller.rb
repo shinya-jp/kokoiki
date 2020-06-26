@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.reverse_order
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def edit
@@ -27,19 +25,28 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @users = @user.following
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
-    @age = ( Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
-  def reviews
-    @users = current_user.following
+  def timeline
+    @user = current_user
+    @users = @user.following
+    @reviews = []
+    if @users.present?
+      @users.each do |user|
+        reviews = Review.where(user_id: user.id).reverse_order
+        @reviews.concat(reviews)
+      end
+    end
+  end
 
-    @reviews = @users.review.all
+  def favorite
+    @user = User.find(params[:id])
+    @favorites = @user.favorites
   end
 
   def quit
@@ -47,6 +54,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:nickname, :gender, :birthday, :address, :profile_image)
   end

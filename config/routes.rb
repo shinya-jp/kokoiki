@@ -5,25 +5,27 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit, :update, :destroy] do
     member do
-      get :following, :followers
+      get :timeline
+      get :quit
+      get :favorite
     end
-    collection do
-      get :reviews
+    member do
+      get :following, :followers
     end
     resources :relationships, only: [:create, :destroy]
   end
-  get 'users/:id/quit' => 'users#quit', as:'quit'
+
   resources :places, only: [:new, :create, :show] do
     collection do
       get :confirm
     end
     resources :reviews do
-    collection do
-      get :confirm
+      collection do
+        get :confirm
+      end
+      resource :favorites, only: [:create, :destroy]
+      resources :review_comments, only: [:create, :destroy]
     end
   end
-  end
-  # get 'places/confirm' => 'places#confirm'
-
-
+  get 'favorites/index'
 end
