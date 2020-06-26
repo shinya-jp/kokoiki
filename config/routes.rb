@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit, :update, :destroy] do
     member do
+      get :timeline
       get :quit
+      get :favorite
     end
     member do
       get :following, :followers
-    end
-    collection do
-      get :reviews
     end
     resources :relationships, only: [:create, :destroy]
   end
@@ -24,10 +23,9 @@ Rails.application.routes.draw do
       collection do
         get :confirm
       end
+      resource :favorites, only: [:create, :destroy]
       resources :review_comments, only: [:create, :destroy]
     end
   end
-  # get 'places/confirm' => 'places#confirm'
-
-
+  get 'favorites/index'
 end

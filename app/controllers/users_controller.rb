@@ -32,9 +32,21 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
-  def reviews
-    @users = current_user.following
-    @reviews = @users.review.all
+  def timeline
+    @user = current_user
+    @users = @user.following
+    @reviews = []
+    if @users.present?
+      @users.each do |user|
+        reviews = Review.where(user_id: user.id).reverse_order
+        @reviews.concat(reviews)
+      end
+    end
+  end
+
+  def favorite
+    @user = User.find(params[:id])
+    @favorites = @user.favorites
   end
 
   def quit

@@ -2,13 +2,13 @@
 	<%= render 'profile', user: @user %>
 	<div class="col-sm-9">
 
-		<h1>マイレビュー</h1>
+		<h1>タイムライン</h1>
 		<% if @reviews.count > 0 %>
 			<% @reviews.each do |review| %>
-				<%= render 'reviews/post_content', user: @user, review: review %>
+				<%= render 'reviews/post_content', user: review.user, review: review %>
 			<% end %>
 		<% else %>
-			<h3 class="review__none">レビューが投稿されてません</h3>
+			<h3 class="review__none">まだレビューがありません</h3>
 		<% end %>
 	</div>
 </div>

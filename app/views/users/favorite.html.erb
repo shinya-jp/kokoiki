@@ -1,0 +1,14 @@
+<div class="row">
+	<%= render 'profile', user: @user %>
+	<div class="col-sm-9">
+
+		<h1>いいね一覧</h1>
+		<% if @favorites.count > 0 %>
+			<% @favorites.each do |favorite| %>
+				<%= render 'reviews/post_content', user: favorite.review.user, review: favorite.review %>
+			<% end %>
+		<% else %>
+			<h3 class="review__none">いいねがありません</h3>
+		<% end %>
+	</div>
+</div>

@@ -49,14 +49,26 @@
 .btn-green {
 	color: #000;
 	background-color: #99CC99;
+
+	&:hover {
+		background-color: #99cc33;
+	}
 }
 
 .btn-orange {
 	color: #000;
 	background-color: #FFCCCC;
+
+	&:hover {
+		background-color: #FF99CC;
+	}
 }
 
-.btn-blue {
+.btn-yellow {
 	color: #000;
 	background-color: #FFCC66;
+
+	&:hover {
+		background-color: #FF9900;
+	}
 }

@@ -8,25 +8,12 @@
 		<% end %>
 	</div>
 
-		<% if @reviews.count > 0 %>
+	<% if @reviews.count > 0 %>
 		<div class="places__rate row">
 			<p><%= @rate_avg %>点</p>
 			<div id="reviews_star_avg"></div>
 		</div>
-			<script>
-				$(document).on('turbolinks:load', function () {
-	          		$('#reviews_star_avg').raty({
-			            size: 36,
-			            starOff:  '<%= asset_path('star-off.png') %>',
-			            starOn : '<%= asset_path('star-on.png') %>',
-			            starHalf: '<%= asset_path('star-half.png') %>',
-			            half: true,
-			            readOnly: true,
-			            score: <%= @reviews.average(:rate).round(1) %>,
-	         	 	});
-	         	});
-	          </script>
-		<% end %>
+	<% end %>
 
 	<div class="places__info row">
 		<i><%= @place.genre %></i>
@@ -38,3 +25,18 @@
 		<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
 	<% end %>
 </div>
+
+<!-- 星の表示 -->
+<script>
+$(document).on('turbolinks:load', function () {
+	$('#reviews_star_avg').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= @reviews.average(:rate).round(1) %>,
+ 	});
+});
+</script>

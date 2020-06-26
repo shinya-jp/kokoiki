@@ -31,19 +31,7 @@
 			<p><%= review.rate %>点</p>
 		 <div id="review_star-<%= review.id %>"></div>
 		</div>
-			<script>
-				$(document).on('turbolinks:load', function () {
-					$('#review_star-<%= review.id %>').raty({
-						size: 36,
-						starOff:  '<%= asset_path('star-off.png') %>',
-						starOn : '<%= asset_path('star-on.png') %>',
-						starHalf: '<%= asset_path('star-half.png') %>',
-						half: true,
-						readOnly: true,
-						score: <%= review.rate %>,
-					});
-				});
-          </script>
+
 	</div>
 	<div class="offset-sm-2">
 		<div class="reviews__text">
@@ -56,12 +44,36 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="offset-sm-2">
-		<div class="ewviews_favo">
-
+	<div class="reviews__subaction offset-sm-2">
+		<div class="reviews__favo">
+			<% if review.favorited_by?(current_user) %>
+				<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :delete do %>
+				<i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+				<%= review.favorites.count %>いいね
+				<% end %>
+			<% else %>
+				<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :post do %>
+				<i class="far fa-heart" aria-hidden="true"></i>
+				<%= review.favorites.count %>いいね
+				<% end %>
+			<% end %>
 		</div>
 		<div class="reviews_comment">
 			<%= review.review_comments.count %>件コメント
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).on('turbolinks:load', function () {
+		$('#review_star-<%= review.id %>').raty({
+			size: 36,
+			starOff:  '<%= asset_path('star-off.png') %>',
+			starOn : '<%= asset_path('star-on.png') %>',
+			starHalf: '<%= asset_path('star-half.png') %>',
+			half: true,
+			readOnly: true,
+			score: <%= review.rate %>,
+		});
+	});
+</script>

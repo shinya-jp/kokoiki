@@ -6,9 +6,10 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.place_id == params[:place_id].to_i
       @place = @review.place
+      @review_comments = @review.review_comments.reverse_order
       @review_comment = ReviewComment.new
     else
-      redirect_to place_path(params[:place_id])
+      redirect_to place_path(params[:place_id]),notice: '不正なURLです'
     end
   end
 
