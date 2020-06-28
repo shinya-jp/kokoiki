@@ -42,12 +42,19 @@
 				</div>
 				<div class="col-sm-9">
 					<div class="review__form-img">
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
-						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<% @review.image_range.each do |index| %>
+							<%= f.fields_for :review_images do |image_form| %>
+								<p>
+									<%= image_form.attachment_field :image, multiple: false %>
+								</p>
+							<% end %>
+						<% end %>
+						<!-- <p><%#= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%#= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%#= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%#= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%#= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%#= f.attachment_field :review_images_images, multiple: false %></p> -->
 					</div>
 				</div>
 			</div>

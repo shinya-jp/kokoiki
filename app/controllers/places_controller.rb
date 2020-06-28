@@ -7,9 +7,9 @@ class PlacesController < ApplicationController
     @q = Place.search(search_params)
     @places = @q.result
     @reviews = []
-    unless @places.blank?
+    if @places.present?
       @places.each do |place|
-       @reviews.push(place.reviews)
+        @reviews.push(place.reviews)
       end
     end
   end
@@ -40,6 +40,7 @@ class PlacesController < ApplicationController
   end
 
   private
+
   def search_params
     params.require(:q).permit!
   end
