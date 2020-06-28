@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-  def index
-  end
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def show
     @review = Review.find(params[:id])
@@ -32,12 +31,19 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @place = Place.find(params[:place_id])
+    @review = Review.find(params[:id])
   end
 
   def update
+
   end
 
   def destroy
+    @place = Place.find(params[:place_id])
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to user_path(current_user)
   end
 
   def confirm

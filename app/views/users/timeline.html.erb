@@ -1,7 +1,6 @@
 <div class="row">
 	<%= render 'profile', user: @user %>
 	<div class="col-sm-9">
-
 		<h1>タイムライン</h1>
 		<% if @reviews.count > 0 %>
 			<% @reviews.each do |review| %>

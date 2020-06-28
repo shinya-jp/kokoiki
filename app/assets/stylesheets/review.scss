@@ -26,7 +26,7 @@
 	}
 
 	&__none {
-		margin-top: 30%;
+		margin-top: 20%;
  	   	color: #999;
     	text-align: center;
 	}
@@ -36,6 +36,10 @@
 	}
 
 	// review.show
+
+	&__edit {
+		padding-bottom: 10px;
+	}
 
 	&__comment-user {
 		padding-bottom: 5px;

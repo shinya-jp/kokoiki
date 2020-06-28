@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
   end
 
-  resources :places, only: [:new, :create, :show] do
+  resources :places, only: [:index, :new, :create, :show] do
     collection do
       get :confirm
     end

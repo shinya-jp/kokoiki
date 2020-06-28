@@ -3,10 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .reviews {
-	border: 2px solid #666;
+	border: 2px solid #BAD3FF;
 	padding: 15px 10px 0 10px;
 	border-radius: 20px;
 	margin:15px 0 15px 0;
+
+	// & a {
+	// 	color: #5B5B5B;
+
+	// 	&:hover {
+	// 		color: #FFCC66;
+	// 		border: none;
+	// 	}
+	// }
 
 	&__profile {
 		padding-bottom: 5px;
@@ -38,9 +47,12 @@
 		margin-left: 20px;
 	}
 
-	&__reviews_text h5 {
+	&__text h5 {
+		width: auto;
 		padding-top: 8px;
 		font-weight: bolder;
+		border-bottom: 1px dotted #808080;
+		display: inline;
 	}
 
 	&__rate {
@@ -67,5 +79,9 @@
 	&__favo {
 		float: left;
 		padding-right: 13px;
+	}
+
+	&__comment {
+		float: left;
 	}
 }

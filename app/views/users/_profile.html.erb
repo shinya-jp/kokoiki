@@ -7,14 +7,15 @@
 		<table class="profile__list">
 				<tr>
 					<th><%= user.nickname %></th>
+					<td></td>
 				</tr>
 				<tr>
 					<th>フォロー</th>
-					<td><%= link_to user.following.count, following_user_path %></td>
+					<td><%= link_to user.following.count, following_user_path(user) %></td>
 				</tr>
 				<tr>
 					<th>フォロワー</th>
-					<td><%= link_to user.followers.count, followers_user_path %></td>
+					<td><%= link_to user.followers.count, followers_user_path(user) %></td>
 				</tr>
 		</table>
 		<% if current_user == user %>

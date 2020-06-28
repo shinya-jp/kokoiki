@@ -1,5 +1,11 @@
 class PlacesController < ApplicationController
+  before_action :baria_action, only: :confirm
   before_action :check_search_params, only: :confirm
+  before_action :authenticate_user!, only: [:new, :confirm]
+
+  def index
+    
+  end
 
   def new
     @q = Place.ransack(params[:q])
@@ -14,7 +20,6 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @reviews = @place.reviews.reverse_order
-    @rate_avg = @reviews.average(:rate).round(1)
   end
 
   def confirm
@@ -28,13 +33,19 @@ class PlacesController < ApplicationController
   end
 
   private
-
   def search_params
     params.require(:q).permit!
   end
 
   def place_params
     params.require(:place).permit(:name, :genre, :prefecture)
+  end
+
+  def baria_action
+    q = Place.ransack(params[:q])
+    if q.blank?
+      redirect_to new_place_path, notice: '不正なアクセスです'
+    end
   end
 
   # お店の検索で空白入力を防ぐ

@@ -1,2 +1,70 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<div class="offset-sm-1">
+	<h2>レビュー編集</h2>
+
+	<div class="review">
+		<div class="review__place">
+			<h3><%= @place.name %></h3>
+			<p><%= @place.prefecture %></p>
+			<p>/<%= @place.genre %></p>
+		</div>
+		<div class="review__form form">
+			<%= form_with(model: [@place, @review], local: true) do |f| %>
+			<div class="from-group row">
+				<div class="col-sm-2">
+					<h4>評価</h4>
+				</div>
+				<div class="review__rate col-sm-6" id="star">
+					<%= f.hidden_field :rate, id: :review_star %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-2">
+					<h4>タイトル</h4>
+				</div>
+				<div class="col-sm-7">
+					<%= f.text_field :title, class: "form-control" %>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-sm-2">
+					<h4>本文</h4>
+				</div>
+				<div class="col-sm-7">
+					<%= f.text_area :body, rows: 10, class: "form-control" %>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-sm-2">
+					<h4>画像<span class="review__form-title">(６枚まで)</span></h4>
+				</div>
+				<div class="col-sm-9">
+					<div class="review__form-img">
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+						<p><%= f.attachment_field :review_images_images, multiple: false %></p>
+					</div>
+				</div>
+			</div>
+			<div class="offset-sm-2">
+				<%= f.submit "投稿する", class: "btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<!-- レビュー星の表示 -->
+<script>
+ $('#star').raty({
+   size: 50,
+   starOff: '<%= asset_path('star-off.png') %>',
+   starOn: '<%= asset_path('star-on.png') %>',
+   starHalf: '<%= asset_path('star-half.png') %>',
+   scoreName: 'review[rate]',
+   half: true,
+ });
+</script>
