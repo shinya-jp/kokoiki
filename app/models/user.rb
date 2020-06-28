@@ -15,7 +15,7 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :reviews
+  has_many :reviews,dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
 
@@ -29,7 +29,8 @@ class User < ApplicationRecord
     佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47,
   }
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true,
+                       length: { maximum: 10 }
   validates :gender,   presence: true
   validates :birthday, presence: true
   validates :address,  presence: true

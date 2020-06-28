@@ -1,21 +1,20 @@
 <div class="reviews">
 	<%= link_to user_path(user) do %>
-	<div class="reviews__profile">
-		<div class="reviews__profile-img col-sm-1">
-			<%= attachment_image_tag user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "70x70" %>
-		</div>
-		<div class="offset-sm-2">
-			<div class="reviews__profile-name">
-				<b><%= user.nickname %></b>
+		<div class="reviews__profile">
+			<div class="reviews__profile-img col-sm-1">
+				<%= attachment_image_tag user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "70x70" %>
 			</div>
-			<div class="reviews__profile-info">
-				<i><%= user.address %>　/</i>
-				    <i><%= user.age_decade %></i>
-				<i>　/<%= user.gender %></i>
-
+			<div class="offset-sm-2">
+				<div class="reviews__profile-name">
+					<b><%= user.nickname %></b>
+				</div>
+				<div class="reviews__profile-info">
+					<i><%= user.address %>　/</i>
+					    <i><%= user.age_decade %></i>
+					<i>　/<%= user.gender %></i>
+				</div>
 			</div>
 		</div>
-	</div>
 	<% end %>
 	<div class="offset-sm-2">
 		<div class="reviews__place">
@@ -58,8 +57,11 @@
 				<% end %>
 			<% end %>
 		</div>
-		<div class="reviews_comment">
+		<div class="reviews__comment">
 			<%= review.review_comments.count %>件コメント
+		</div>
+		<div class="offset-sm-8">
+			<%= review.created_at.strftime('%Y/%m/%d/ %H:%M') %>
 		</div>
 	</div>
 </div>

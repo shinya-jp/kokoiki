@@ -1,16 +1,23 @@
+<%= render 'layouts/error_messages', model: @review_comment %>
 <div class="row">
 	<%= render 'users/profile', user: @review.user %>
 	<div class="col-sm-9">
 		<div class="review__show">
 			<%= render 'reviews/post_content', user: @review.user, review: @review%>
 		</div>
+		<% if @review.user == current_user %>
+			<div class="review__edit offset-sm-10">
+				<%= link_to "レビュー削除", place_review_path(place_id: @review.place.id, id: @review.id), method: :delete,
+				"data-confirm"=> "本当に削除しますか？", class: "btn btn-danger" %>
+			</div>
+		<% end %>
 			<!-- コメント投稿 -->
 			<div class="review__comment">
 				<%= form_with(model: [@place, @review, @review_comment], local: true) do |f| %>
 					<div class="row">
 						<div class="col-sm-10">
 							<div class="form-group">
-								<%= f.text_area :comment, rows:3, class: "form-control" %>
+								<%= f.text_area :comment, rows:3, :placeholder=> "128文字以内", class: "form-control" %>
 							</div>
 						</div>
 						<div class="col-sm-1 align-self-end">

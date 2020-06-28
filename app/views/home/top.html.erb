@@ -1,2 +1,24 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<%= search_form_for @p, url: do |f| %>
+	<div class="form-inline">
+		<div class="from-group sm-2">
+			<p>ジャンル</p>
+				<div class="form-check">
+				<%= f.radio_button :genre_eq, "1" %>
+				<%= f.label :genre_eq, "遊び",'', value:"1", class: "form-check-label" %>
+			</div>
+			<div class="form-check">
+				<%= f.radio_button :genre_eq, "2" %>
+				<%= f.label :genre_eq, "食事", value: "2", class: "form-check-label" %>
+			</div>
+		</div>
+		<div class="form-group sm-2">
+			<p>都道府県</p>
+			<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
+		</div>
+		<div class="form-group sm-3">
+			<p>キーワード</p>
+			<%= f.text_field :name_cont %>
+		</div>
+		<%= f.submit "検索" %>
+	</div>
+<% end %>

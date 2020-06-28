@@ -4,20 +4,28 @@
 
 
 .places {
-
-	&_new-text th {
-		font-size: 120%;
-		font-weight: bolder;
-		padding: 0 30px 15px 0;
+// new.html
+	&__form {
+		margin-top: 50px;
 	}
 
-	&_new-text td {
-		font-size: 115%;
-		padding: 0 30px 15px 0;
+// confirm.html
+	&__new-box {
+		margin-top: 50px;
+	}
+
+	&__new-text p:nth-child(1) {
+		float: left;
+	}
+
+	&__new-text p:nth-child(2) {
+		font-weight: bold;
+		font-size: 110%;
 	}
 
 	&__list {
-		margin-top: 30px;
+		margin-top: 50px;
+		margin-bottom: 20px;
 		width: 100%;
 	}
 
@@ -54,5 +62,4 @@
 		padding-right: 10px;
 		font-weight: bold;
 	}
-
 }

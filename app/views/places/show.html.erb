@@ -10,9 +10,10 @@
 
 	<% if @reviews.count > 0 %>
 		<div class="places__rate row">
-			<p><%= @rate_avg %>点</p>
+			<p><%= @reviews.average(:rate).round(1) %>点</p>
 			<div id="reviews_star_avg"></div>
 		</div>
+		<!-- 星の表示 -->
 	<% end %>
 
 	<div class="places__info row">
@@ -21,8 +22,12 @@
 		<i>レビュー<%= @reviews.count %>件</i>
 	</div>
 	<h3>レビュー 一覧</h3>
-	<% @reviews.each do |review| %>
-		<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
+	<% if @reviews.count > 0 %>
+		<% @reviews.each do |review| %>
+			<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
+		<% end %>
+	<% else %>
+		<h3 class="review__none">レビューが投稿されてません</h3>
 	<% end %>
 </div>
 
