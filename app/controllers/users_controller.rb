@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :baria_user
+  before_action :baria_user, only: :edit
 
   def show
     @user = User.find(params[:id])

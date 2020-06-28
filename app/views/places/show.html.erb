@@ -1,11 +1,9 @@
 <div class="places">
 	<div class="row">
 			<h1><%= @place.name %></h1>
-		<% if user_signed_in? %>
 			<div class="places__review-link">
 				<%= link_to "ここのレビューをする", new_place_review_path(@place.id), class: "btn btn-warning" %>
 			</div>
-		<% end %>
 	</div>
 
 	<% if @reviews.count > 0 %>
@@ -13,7 +11,6 @@
 			<p><%= @reviews.average(:rate).round(1) %>点</p>
 			<div id="reviews_star_avg"></div>
 		</div>
-		<!-- 星の表示 -->
 	<% end %>
 
 	<div class="places__info row">

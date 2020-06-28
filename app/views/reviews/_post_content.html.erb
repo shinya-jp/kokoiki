@@ -44,22 +44,24 @@
 		</div>
 	</div>
 	<div class="reviews__subaction offset-sm-2">
-		<div class="reviews__favo">
-			<% if review.favorited_by?(current_user) %>
-				<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :delete do %>
-				<i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-				<%= review.favorites.count %>いいね
+		<% if signed_in? %>
+			<div class="reviews__favo">
+				<% if review.favorited_by?(current_user) %>
+					<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :delete do %>
+					<i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+					<%= review.favorites.count %>いいね
+					<% end %>
+				<% else %>
+					<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :post do %>
+					<i class="far fa-heart" aria-hidden="true"></i>
+					<%= review.favorites.count %>いいね
+					<% end %>
 				<% end %>
-			<% else %>
-				<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :post do %>
-				<i class="far fa-heart" aria-hidden="true"></i>
-				<%= review.favorites.count %>いいね
-				<% end %>
-			<% end %>
-		</div>
-		<div class="reviews__comment">
-			<%= review.review_comments.count %>件コメント
-		</div>
+			</div>
+			<div class="reviews__comment">
+				<%= review.review_comments.count %>件コメント
+			</div>
+		<% end %>
 		<div class="offset-sm-8">
 			<%= review.created_at.strftime('%Y/%m/%d/ %H:%M') %>
 		</div>

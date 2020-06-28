@@ -1,24 +1,53 @@
-<%= search_form_for @p, url: do |f| %>
-	<div class="form-inline">
-		<div class="from-group sm-2">
-			<p>ジャンル</p>
-				<div class="form-check">
-				<%= f.radio_button :genre_eq, "1" %>
-				<%= f.label :genre_eq, "遊び",'', value:"1", class: "form-check-label" %>
+<%= search_form_for @q, url: places_path do |f| %>
+	<div class="places__search">
+		<div class="row">
+			<div class="from-group col-sm-3">
+				<p>ジャンル</p>
+				<div class="form-text">
+					<%= f.select :genre_eq, Place.genres.map{|k, v| [Place.genres_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
+				</div>
 			</div>
-			<div class="form-check">
-				<%= f.radio_button :genre_eq, "2" %>
-				<%= f.label :genre_eq, "食事", value: "2", class: "form-check-label" %>
+			<div class="form-group col-sm-3">
+				<p>都道府県</p>
+				<div class="form-text">
+					<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
+				</div>
+			</div>
+			<div class="form-group col-sm-3">
+				<p>キーワード</p>
+				<div class="form-text">
+					<%= f.text_field :name_cont, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group col-sm-1 align-self-end">
+				<div class="places__search-action">
+					<%= f.submit "検索", class: "btn btn-primary" %>
+				</div>
 			</div>
 		</div>
-		<div class="form-group sm-2">
-			<p>都道府県</p>
-			<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
-		</div>
-		<div class="form-group sm-3">
-			<p>キーワード</p>
-			<%= f.text_field :name_cont %>
-		</div>
-		<%= f.submit "検索" %>
 	</div>
 <% end %>
+
+<div class="places__top-list clearfix">
+	<p class="places__genre">遊び一覧</p>
+	<% @places_play.each do |place| %>
+		<div class="places__top-list-name">
+			<%= link_to place_path(place) do %>
+				<p><%= place.name %></p>
+				<p><%= place.prefecture %></p>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+
+<div class="places__top-list clearfix">
+	<p class="places__genre">食事一覧</p>
+	<% @places_meal.each do |place| %>
+		<div class="places__top-list-name">
+			<%= link_to place_path(place) do %>
+				<P><%= place.name %></P>
+				<P><%= place.prefecture %></P>
+			<% end %>
+		</div>
+	<% end %>
+</div>
