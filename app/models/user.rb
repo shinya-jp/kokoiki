@@ -15,10 +15,9 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :reviews,dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
-
 
   enum gender: { 男性: 1, 女性: 2 }
   enum address: {

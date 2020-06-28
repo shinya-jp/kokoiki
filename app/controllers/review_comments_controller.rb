@@ -1,5 +1,4 @@
 class ReviewCommentsController < ApplicationController
-
   def create
     review = Review.find(params[:review_id])
     comment = current_user.review_comments.new(review_comment_params)
@@ -23,6 +22,7 @@ class ReviewCommentsController < ApplicationController
   end
 
   private
+
   def review_comment_params
     params.require(:review_comment).permit(:comment)
   end
