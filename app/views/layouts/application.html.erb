@@ -5,42 +5,52 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/12f00c5def.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body style="padding-top:4.5rem;">
     <header>
-      <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
-        <div class="container">
-          <div class=navbar-brand>
-            <%= link_to "あ、ここいきたい", root_path %>
-          </div>
-          <!-- ナビ -->
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-              </li>
-            <% end %>
-          </ul>
-       </div>
-      </nav>
+      <div class="header">
+        <nav class="header__color navbar navbar-expand navbar-light fixed-top">
+          <div class="container">
+            <div class="header__title navbr-brand">
+              <%= link_to "いつもの場所", root_path %>
+            </div>
+            <!-- ナビ -->
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to "タイムライン", timeline_user_path(current_user), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+         </div>
+        </nav>
+      </div>
     </header>
     <!-- /header -->
+    <div class="container">
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-    <div class="container">
     <%= yield %>
-    <div>
+    </div>
     <footer>
+      <p>© All rights reserved by shinya</p>
     </footer>
   </body>
 </html>

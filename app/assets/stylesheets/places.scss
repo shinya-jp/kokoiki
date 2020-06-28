@@ -1,0 +1,93 @@
+// Place all the styles related to the places controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.places {
+// TOP.html
+	&__search {
+		padding: 40px;
+		border: 2px solid #EEEEEE;
+	}
+
+	&__top-list{
+		border: 2px solid #EEEEEE;
+		margin-top: 50px;
+		margin-bottom: 20px;
+		padding-top: 20px;
+		width: 100%;
+	}
+
+	&__genre {
+		padding-left: 20px;
+		font-weight: bold;
+		font-size: 110%;
+	}
+
+	&__top-list-name {
+		float: left;
+		padding: 0 20px;
+		border-right: 1px solid #EEEEEE;
+	}
+
+
+
+// new.html
+	&__form {
+		margin-top: 50px;
+	}
+
+// confirm.html
+	&__new-box {
+		margin-top: 50px;
+	}
+
+	&__new-text p:nth-child(1) {
+		float: left;
+	}
+
+	&__new-text p:nth-child(2) {
+		font-weight: bold;
+		font-size: 110%;
+	}
+
+	&__list {
+		margin-top: 50px;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+
+	&__list th {
+		border-bottom: 3px solid #000;
+	}
+
+	&__list td {
+		border-bottom: 1px solid #eee;
+		padding: 10px 0 5px 0;
+	}
+
+	&__new-link {
+		margin-top: 15px;
+	}
+// show.html
+	&__review-link {
+		margin: 0 0 0 auto;
+    	padding-right: 100px;
+	}
+
+	&__info {
+		padding-bottom: 10px;
+		border-bottom: 2px solid #eee;
+		margin-bottom: 15px;
+	}
+
+	&__rate img {
+		width: 30px;
+	}
+
+	&__rate p {
+		font-size: 22px;
+		padding-right: 10px;
+		font-weight: bold;
+	}
+}

@@ -7,6 +7,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :active_relationships,  class_name: "Relationship",
+                                   foreign_key: "follower_id",
+                                   dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :reviews,dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
+
+
   enum gender: { 男性: 1, 女性: 2 }
   enum address: {
     北海道: 1, 青森県: 2, 岩手県: 3, 宮城県: 4, 秋田県: 5, 山形県: 6, 福島県: 7, 茨城県: 8, 栃木県: 9, 群馬県: 10,
@@ -16,8 +29,30 @@ class User < ApplicationRecord
     佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47,
   }
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true,
+                       length: { maximum: 10 }
   validates :gender,   presence: true
   validates :birthday, presence: true
   validates :address,  presence: true
+
+  # 　ユーザーをフォローする
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  # ユーザーの生年月日から年代表示
+  def age_decade
+    age = (Date.today.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
+    "#{age.to_s.chop}0代"
+  end
 end

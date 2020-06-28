@@ -1,0 +1,22 @@
+// Place all the styles related to the places controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile {
+
+	&__list {
+		margin-top: 15px;
+		width: 100%
+	}
+
+	&__list th {
+		padding-top: 10px;
+	}
+	&__list tr {
+		border-bottom: 1px solid #ddd;
+	}
+
+	&__btn {
+		margin-top: 15px;
+	}
+}

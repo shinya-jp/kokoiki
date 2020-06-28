@@ -14,23 +14,23 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
+//= require jquery.raty
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
 
-// $(function() {
-//   $(document).on('turbolinks:load',() => {
-//     function readURL(input) {
-//         if (input.files && input.files[0]) {
-//         var reader = new FileReader();
-//         reader.onload = function (e) {
-//     $('#preview').attr('src', e.target.result);
-//         }
-//         reader.readAsDataURL(input.files[0]);
-//         }
-//     }
-//     $("#profile_img").change(function(){
-//         readURL(this);
-//     });
-//   });
-// });
+$(document).on('turbolinks:load', function () {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile_img").change(function(){
+        readURL(this);
+    });
+});
+

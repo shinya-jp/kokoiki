@@ -3,7 +3,29 @@ Rails.application.routes.draw do
   root to: 'home#top'
   get 'home/about'
   devise_for :users
-  resources :users, only: [:show, :edit, :update, :destroy]
-  get 'users/:id/end' => 'users#end', as:'end'
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    member do
+      get :timeline
+      get :quit
+      get :favorite
+    end
+    member do
+      get :following, :followers
+    end
+    resources :relationships, only: [:create, :destroy]
+  end
 
+  resources :places, only: [:index, :new, :create, :show] do
+    collection do
+      get :confirm
+    end
+    resources :reviews do
+      collection do
+        get :confirm
+      end
+      resource :favorites, only: [:create, :destroy]
+      resources :review_comments, only: [:create, :destroy]
+    end
+  end
+  get 'favorites/index'
 end

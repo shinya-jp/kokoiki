@@ -1,0 +1,87 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.reviews {
+	border: 2px solid #BAD3FF;
+	padding: 15px 10px 0 10px;
+	border-radius: 20px;
+	margin:15px 0 15px 0;
+
+	// & a {
+	// 	color: #5B5B5B;
+
+	// 	&:hover {
+	// 		color: #FFCC66;
+	// 		border: none;
+	// 	}
+	// }
+
+	&__profile {
+		padding-bottom: 5px;
+		border-bottom: 2px solid #eeeeee;
+	}
+
+	&__profile-img {
+		float: left;
+	}
+
+	&__profile-name {
+
+	}
+
+	&__profile-info {
+		margin-top: 20px;
+	}
+
+	&__place {
+		padding-top: 10px;
+	}
+
+	&__place_name {
+		display: inline;
+	}
+
+	&__place_info {
+		display: inline;
+		margin-left: 20px;
+	}
+
+	&__text h5 {
+		width: auto;
+		padding-top: 8px;
+		font-weight: bolder;
+		border-bottom: 1px dotted #808080;
+		display: inline;
+	}
+
+	&__rate {
+		border-bottom: 1px solid #eeeeee;
+		border-top: 1px solid #eeeeee;
+		padding: 8px 0 8px 0;
+		margin: 5px 0 5px 0;
+		width: 100%
+	}
+	&__rate p {
+		font-size: 20px;
+		padding-right: 10px;
+		float: left;
+	}
+
+	&__text {
+		clear: both;
+	}
+
+	&__subaction {
+		margin-top: 10px;
+		margin-bottom: 6px;
+	}
+	&__favo {
+		float: left;
+		padding-right: 13px;
+	}
+
+	&__comment {
+		float: left;
+	}
+}

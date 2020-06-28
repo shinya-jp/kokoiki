@@ -1,0 +1,68 @@
+<div class="offset-sm-1 col-sm-10">
+<% if @places.count == 0%>
+	<div class="places__new">
+		<h3>該当の場所が無かった為、新規登録します</h3>
+		<p>確認してください。</p>
+			<div class="places__new-box">
+				<div class="places__new-text">
+					<p>場所の名前</p>
+					<p class="offset-sm-2"><%= @place.name %></p>
+				</div>
+				<div class="places__new-text">
+					<p>都道府県</p>
+					<p class="offset-sm-2"><%= @place.prefecture %></p>
+				</div>
+				<div class="places__new-text">
+					<p>ジャンル</p>
+					<p class="offset-sm-2"><%= @place.genre %></p>
+				</div>
+
+				<%= form_with(model: @place, local: true) do |f| %>
+					<%= f.hidden_field :name %>
+					<%= f.hidden_field :prefecture, value: @place.prefecture %>
+					<%= f.hidden_field :genre, value: @place.genre %>
+					<div class="offset-sm-2">
+						<%= f.submit "新規登録する", class: "btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+<% else %>
+	<div class="places">
+		<h2>もしかしてこちらと同じですか？？</h2>
+	 	<table class="places__list">
+	 		<thead>
+	 			<tr>
+	 				<th>名前</th>
+	 				<th>ジャンル</th>
+	 				<th>都道府県</th>
+	 				<th></th>
+	 			</tr>
+	 		</thead>
+	 		<% @places.each do |place| %>
+	 		<tbody>
+	 			<tr>
+	 				<td><%= link_to place_path(place) do %>
+	 						<%= place.name %>
+	 					<% end %>
+	 				</td>
+	 				<td><%= place.genre %></td>
+	 				<td><%= place.prefecture %></td>
+	 				<td><%= link_to "ここと同じ場所です", new_place_review_path(place.id), class: "btn btn-yellow" %></td>
+	 			</tr>
+	 		</tbody>
+	 		<% end %>
+	 	</table>
+		<%= form_with(model: @place, local: true) do |f| %>
+			<%= f.hidden_field :name %>
+			<%= f.hidden_field :prefecture, value: @place.prefecture %>
+			<%= f.hidden_field :genre, value: @place.genre %>
+			<div class="places__new-link">
+				<%= f.submit "当てはまらないので、新規登録します。", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	 </div>
+<% end %>
+</div>

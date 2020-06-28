@@ -1,31 +1,37 @@
-<div class="col-sm-3">
+<div class="col-sm-3 profile">
 	<div class="position-fixed">
 		<h2>Profile</h2>
 
 		<%= attachment_image_tag user, :profile_image, :fill,100, 100, format: 'jpeg',fallback: "no_image.jpg" %>
 
-		<table>
+		<table class="profile__list">
 				<tr>
-					<th>ニックネーム</th>
-					<td><%= user.nickname %></td>
+					<th><%= user.nickname %></th>
+					<td></td>
 				</tr>
 				<tr>
 					<th>フォロー</th>
-					<td></td>
+					<td><%= link_to user.following.count, following_user_path(user) %></td>
 				</tr>
 				<tr>
 					<th>フォロワー</th>
-					<td></td>
+					<td><%= link_to user.followers.count, followers_user_path(user) %></td>
 				</tr>
-				<tr>
-					<th><div class="btn btn-primary">行きたいリスト</div></th>
-				</tr>
-
 		</table>
-		<div class="profile_edit-link">
-			<% if current_user == user %>
-				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-success" %>
-			<% end %>
+		<% if current_user == user %>
+			<div class="profile__btn">
+				<%= link_to "プロフィール編集", edit_user_path(current_user.id),class: "btn btn-green btn-block" %>
+			</div>
+		<% else %>
+			<div class="profile__btn">
+				<%= render 'users/follow', user: user%>
+			</div>
+		<% end %>
+		<div class="profile__btn">
+			<%= link_to "いいねリスト", favorite_user_path(user), class: "btn btn-orange btn-block" %>
+		</div>
+		<div class="profile__btn">
+			<%= link_to "レビューを投稿する", new_place_path, class: "btn btn-yellow btn-block" %>
 		</div>
 	</div>
 </div>

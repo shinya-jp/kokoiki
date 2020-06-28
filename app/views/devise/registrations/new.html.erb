@@ -1,84 +1,86 @@
-<h2>新規登録</h2>
+<div class="offset-sm-3">
+  <h2>新規登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="form">
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <%= f.label :nickname, "ニックネーム", class: "col-form-label" %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="form">
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :nickname, "ニックネーム", class: "col-form-label" %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.text_field :nickname, :placeholder=>"10文字以内", autofocus: true, class: "form-control" %>
+        </div>
       </div>
-      <div class="col-sm-5">
-        <%= f.text_field :nickname, :placeholder=>"例）タロウ", autofocus: true, class: "form-control" %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <label>性別</label>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <label>性別</label>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :gender, "男性" %>
+          <%= f.label :gender, "男性", value:"男性", class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :gender, "女性" %>
+          <%= f.label :gender, "女性", value:"女性", class: "form-check-label" %>
+        </div>
       </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, "男性" %>
-        <%= f.label :gender, "男性", value:"男性", class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, "女性" %>
-        <%= f.label :gender, "女性", value:"女性", class: "form-check-label" %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <%= f.label :birthday, "生年月日", class: "col-form-label" %>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :birthday, "生年月日", class: "col-form-label" %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.date_select :birthday, {use_month_numbers: true, start_year:1930, end_year:(Time.now.year-10), default: Date.new(1990, 1, 1),date_separator: ' / '}, {class: "form-control bootstrap-date-only-width"} %>
+        </div>
       </div>
-      <div class="col-sm-3">
-        <%= f.date_select :birthday, {use_month_numbers: true, start_year:1930, end_year:(Time.now.year-10), default: Date.new(1990, 1, 1),date_separator: ' / '}, {class: "form-control bootstrap-date-only-width"} %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <%= f.label :address, "お住まい" %>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :address, "お住まい" %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.select :address, User.addresses.keys,{prompt: "選択してください"},class: "custom-select" %>
+        </div>
       </div>
-      <div class="col-sm-2">
-        <%= f.select :address, User.addresses.keys,{prompt: "選択してくだい"},class: "custom-select" %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <%= f.label :email, "メール" %>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :email, "メール" %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.email_field :email, :placeholder=>"例）kokoiki@example.com" , autocomplete: "email", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-sm-5">
-        <%= f.email_field :email, :placeholder=>"例）kokoiki@example.com" , autocomplete: "email", class: "form-control" %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-       <%= f.label :password, "パスワード" %>
+      <div class="form-group row">
+        <div class="col-sm-3">
+         <%= f.label :password, "パスワード" %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.password_field :password, :placeholder=>"半角英数字6文字以上", autocomplete: "new-password", class: "form-control" %>
+        </div>
       </div>
-      <% if @minimum_password_length %>
-      <% end %>
-      <div class="col-sm-5">
-        <%= f.password_field :password, :placeholder=>"半角英数字6文字以上", autocomplete: "new-password", class: "form-control" %>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <div class="col-sm-2">
-        <%= f.label :password_confirmation, "パスワード（確認）" %>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :password_confirmation, "パスワード（確認）" %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.password_field :password_confirmation, :placeholder=>"半角英数字6文字以上", autocomplete: "new-password", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-sm-5">
-        <%= f.password_field :password_confirmation, :placeholder=>"半角英数字6文字以上", autocomplete: "new-password", class: "form-control" %>
+
+      <div class="form-group row">
+        <div class="form-action offset-sm-3">
+          <%= f.submit "新規登録", class: "btn btn-primary" %>
+        </div>
       </div>
-    </div>
+  <% end %>
+
+  <div class="login-link">
+    <p>既にご登録済みの方はこちらから<%= link_to "ログイン", new_user_session_path %></p>
   </div>
 
-  <div class="form-group row">
-    <div class="offset-sm-2 col-sm-10">
-      <%= f.submit "新規登録", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
-
-<p>既にご登録済みの方はこちらから<%= link_to "ログイン", new_user_session_path %></p>
+</div>

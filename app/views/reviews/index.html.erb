@@ -1,0 +1,7 @@
+<h1>Reviews#index</h1>
+<p>Find me in app/views/reviews/index.html.erb</p>
+
+<h3>レビュー 一覧</h3>
+	<% @reviews.each do |review| %>
+		<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
+	<% end %>

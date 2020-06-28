@@ -1,0 +1,8 @@
+<div class="offset-sm-4">
+	<div class="users__quit">
+		<h3>本当に退会しますか？？</h3>
+		<p>投稿したものはすべて削除されます。</p>
+		<%= link_to "退会しない", user_path(@user), class: "btn btn-primary" %>
+		<%= link_to "退会する", user_path, method: :delete, "data-confirm"=> "本当に退会しますか？？", class: "btn btn-danger offset-sm-1" %>
+	</div>
+</div>

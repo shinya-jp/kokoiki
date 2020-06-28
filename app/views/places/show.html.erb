@@ -1,0 +1,44 @@
+<div class="places">
+	<div class="row">
+			<h1><%= @place.name %></h1>
+			<div class="places__review-link">
+				<%= link_to "ここのレビューをする", new_place_review_path(@place.id), class: "btn btn-warning" %>
+			</div>
+	</div>
+
+	<% if @reviews.count > 0 %>
+		<div class="places__rate row">
+			<p><%= @reviews.average(:rate).round(1) %>点</p>
+			<div id="reviews_star_avg"></div>
+		</div>
+	<% end %>
+
+	<div class="places__info row">
+		<i><%= @place.genre %></i>
+		<i>　/　<%= @place.prefecture %>　/　</i>
+		<i>レビュー<%= @reviews.count %>件</i>
+	</div>
+	<h3>レビュー 一覧</h3>
+	<% if @reviews.count > 0 %>
+		<% @reviews.each do |review| %>
+			<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
+		<% end %>
+	<% else %>
+		<h3 class="review__none">レビューが投稿されてません</h3>
+	<% end %>
+</div>
+
+<!-- 星の表示 -->
+<script>
+$(document).on('turbolinks:load', function () {
+	$('#reviews_star_avg').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= @reviews.average(:rate).round(1) %>,
+ 	});
+});
+</script>
