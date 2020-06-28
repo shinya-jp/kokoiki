@@ -1,8 +1,11 @@
 <div class="row">
-	<%= render 'profile', user: @user %>
-	<div class="col-sm-9">
-
-		<h1>マイレビュー</h1>
+	<% if signed_in? %>
+		<%= render 'profile', user: @user %>
+		<div class="col-sm-9">
+	<% else %>
+		<div class="offset-sm-1 col-sm-10">
+	<% end %>
+		<h1><%= @user.nickname %>さんのレビュー</h1>
 		<% if @reviews.count > 0 %>
 			<% @reviews.each do |review| %>
 				<%= render 'reviews/post_content', user: @user, review: review %>

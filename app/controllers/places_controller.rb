@@ -4,7 +4,14 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :confirm]
 
   def index
-    
+    @q = Place.search(search_params)
+    @places = @q.result
+    @reviews = []
+    unless @places.blank?
+      @places.each do |place|
+       @reviews.push(place.reviews)
+      end
+    end
   end
 
   def new
