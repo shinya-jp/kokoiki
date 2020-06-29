@@ -1,0 +1,27 @@
+<%= search_form_for q, url: places_path do |f| %>
+	<div class="row">
+		<div class="from-group col-sm-3">
+			<p>ジャンル</p>
+			<div class="form-text">
+				<%= f.select :genre_eq, Place.genres.map{|k, v| [Place.genres_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
+			</div>
+		</div>
+		<div class="form-group col-sm-3">
+			<p>都道府県</p>
+			<div class="form-text">
+				<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
+			</div>
+		</div>
+		<div class="form-group col-sm-3">
+			<p>キーワード</p>
+			<div class="form-text">
+				<%= f.text_field :name_cont, class: "form-control" %>
+			</div>
+		</div>
+		<div class="form-group col-sm-1 align-self-end">
+			<div class="places__search-action">
+				<%= f.submit "検索", class: "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+<% end %>

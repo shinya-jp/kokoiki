@@ -1,53 +1,49 @@
-<%= search_form_for @q, url: places_path do |f| %>
-	<div class="places__search">
-		<div class="row">
-			<div class="from-group col-sm-3">
-				<p>ジャンル</p>
-				<div class="form-text">
-					<%= f.select :genre_eq, Place.genres.map{|k, v| [Place.genres_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
-				</div>
-			</div>
-			<div class="form-group col-sm-3">
-				<p>都道府県</p>
-				<div class="form-text">
-					<%= f.select :prefecture_eq, Place.prefectures.map{|k, v| [Place.prefectures_i18n[k],v]}, {prompt: "選択してください"}, class: "custom-select" %>
-				</div>
-			</div>
-			<div class="form-group col-sm-3">
-				<p>キーワード</p>
-				<div class="form-text">
-					<%= f.text_field :name_cont, class: "form-control" %>
-				</div>
-			</div>
-			<div class="form-group col-sm-1 align-self-end">
-				<div class="places__search-action">
-					<%= f.submit "検索", class: "btn btn-primary" %>
-				</div>
-			</div>
-		</div>
+<div class="top">
+	<div class="top__image">
 	</div>
-<% end %>
+	<h5>ジャンルやキーワードから探す</h5>
+	<div class="top__search">
+		<%= render 'home/search_form', q: @q %>
+	</div>
 
-<div class="places__top-list clearfix">
-	<p class="places__genre">遊び一覧</p>
-	<% @places_play.each do |place| %>
-		<div class="places__top-list-name">
-			<%= link_to place_path(place) do %>
-				<p><%= place.name %></p>
-				<p><%= place.prefecture %></p>
-			<% end %>
-		</div>
-	<% end %>
-</div>
+	<div class="top__play-rank">
+		<h5 class="top__genre">遊びランキング</h5>
 
-<div class="places__top-list clearfix">
-	<p class="places__genre">食事一覧</p>
-	<% @places_meal.each do |place| %>
-		<div class="places__top-list-name">
-			<%= link_to place_path(place) do %>
-				<P><%= place.name %></P>
-				<P><%= place.prefecture %></P>
-			<% end %>
-		</div>
-	<% end %>
+		<% @places_play.first(3).each.with_index(1) do |place, index| %>
+			<div class="top__rank-info">
+				<h4><%= index %>位</h4>
+				<%= link_to place_path(place) do %>
+					<h5><%= place.name %></h5>
+					<i> / <%= place.prefecture %></i>
+				<% end %>
+				<div class="top__rank-rate">
+					<!-- レビュー投稿があれば -->
+						<% if place.reviews.count > 0 %>
+							<%= render 'places/rate_avg', place: place %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+
+	<div class="top__meal-rank">
+		<h5 class="top__genre">食事ランキング</h5>
+		<% @places_meal.first(3).each.with_index(1) do |place, index| %>
+			<div class="top__rank-info">
+				<h4><%= index %>位</h4>
+				<%= link_to place_path(place) do %>
+					<h5><%= place.name %></h5>
+					<i> / <%= place.prefecture %></i>
+				<% end %>
+				<div class="top__rank-rate">
+					<!-- レビュー投稿があれば -->
+						<% if place.reviews.count > 0 %>
+							<%= render 'places/rate_avg', place: place %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>
+<%#= render 'places_rank', place: place, index: index %>

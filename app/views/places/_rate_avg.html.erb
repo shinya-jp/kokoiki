@@ -1,0 +1,17 @@
+<p class="places__avg_rate"><%= place.reviews.average(:rate).round(1) %>点</p>
+	<div class="places__star" id="review_star-<%= place.id%>">
+	</div>
+<!-- jquery 星の表示 -->
+<script>
+$(document).on('turbolinks:load', function () {
+	$('#review_star-<%= place.id %>').raty({
+		size: 36,
+		starOff:  '<%= asset_path('star-off.png') %>',
+		starOn : '<%= asset_path('star-on.png') %>',
+		starHalf: '<%= asset_path('star-half.png') %>',
+		half: true,
+		readOnly: true,
+		score: <%= place.reviews.average(:rate).round(1) %>,
+	});
+});
+</script>

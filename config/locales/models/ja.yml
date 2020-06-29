@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      place: スポット名
+      review: レビュー
+      review_image: レビュー画像
+    attributes:
+      user:
+        nickname: ニックネーム
+        gender: 性別
+        address: お住まい
+      review:
+        title: タイトル
+        body: 本文
+        rate: 評価

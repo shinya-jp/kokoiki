@@ -8,8 +8,7 @@
 
 	<% if @reviews.count > 0 %>
 		<div class="places__rate row">
-			<p><%= @reviews.average(:rate).round(1) %>点</p>
-			<div id="reviews_star_avg"></div>
+			<%= render 'places/rate_avg', place: @place %>
 		</div>
 	<% end %>
 
@@ -19,6 +18,7 @@
 		<i>レビュー<%= @reviews.count %>件</i>
 	</div>
 	<h3>レビュー 一覧</h3>
+
 	<% if @reviews.count > 0 %>
 		<% @reviews.each do |review| %>
 			<%= render 'reviews/post_content', review: review, user: review.user, age: @age%>
@@ -27,18 +27,3 @@
 		<h3 class="review__none">レビューが投稿されてません</h3>
 	<% end %>
 </div>
-
-<!-- 星の表示 -->
-<script>
-$(document).on('turbolinks:load', function () {
-	$('#reviews_star_avg').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= @reviews.average(:rate).round(1) %>,
- 	});
-});
-</script>
