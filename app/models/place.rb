@@ -13,4 +13,9 @@ class Place < ApplicationRecord
   validates :name, presence: true
   validates :genre, presence: true
   validates :prefecture, presence: true
+
+  attr_accessor :average
+  def average_review_rate
+    self.reviews.average(:rate)
+  end
 end
