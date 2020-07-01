@@ -15,5 +15,24 @@
 -遊び行って楽しかった所を共有するために
 ## 設計書
 -テーブル定義書:https://docs.google.com/spreadsheets/d/1K267tgbBSiMf5SQqqENpshrsKVSqKeHsy0kuVK-HreE/edit?usp=sharing
-### 機能一覧
+## 機能一覧
+### TOPページ
+-検索機能
+-ランキング表示
+### ユーザー機能
+-ログイン・ログアウト
+-ユーザーの退会
+-ユーザーの投稿リスト
+-ユーザーのプロフィール編集
+-プロフィール画像の設定
+-レビューの投稿
+### レビュー投稿機能
+-レビューを投稿するスポット登録・検索
+-レビューの星で評価
+-レビューに6枚までの画像投稿
+-レビューの削除
+### スポット機能
+-スポットの検索
+-スポットのレビュー一覧
+
 https://docs.google.com/spreadsheets/d/1CSi0AHZtkAlTt-cILcGQfqEY-D_dSFZD3Z3_pmULqSo/edit?usp=sharing
