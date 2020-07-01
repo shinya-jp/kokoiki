@@ -15,7 +15,9 @@ class ReviewsController < ApplicationController
   def new
     @place = Place.find(params[:place_id])
     @review = Review.new
-    @review.review_images.build
+    (1..6).each do |i|
+      @review.review_images.build
+    end
   end
 
   def create

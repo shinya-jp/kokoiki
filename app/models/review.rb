@@ -19,7 +19,4 @@ class Review < ApplicationRecord
     greater_than_or_equal_to: 0.5,
   }, presence: true
 
-  def image_range
-    (1..6)
-  end
 end
