@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     collection do
       get :confirm
     end
-    resources :reviews, only: [:new, :show] do
+    resources :reviews, only: [:new, :create, :destroy, :show] do
       # collection do
       #   get :confirm
       # end
