@@ -1,9 +1,8 @@
-# あ、ここ行きたい。
+# いつもの場所
 ## サイト概要
 <ul>
 	<li>旅行に行ってきましたではなく、普段どこで遊んでいるのかを紹介する</li>
 	<li>実際にいったところを写真と共に評価をしてもらい、紹介しましょう！</li>
-	<li>投稿された場所のレビューは全ユーザーが見れるようになります</li>
 	<li>フォロー機能もあるので友人などとおすすめし合いましょう！</li>
 </ul>
 
@@ -22,7 +21,7 @@
 
 ### ターゲットユーザ
 <ul>
-	<li>１０代〜３０代の遊び場に困った方に</li>
+	<li>１０代〜３０代の遊び場やご飯食べいくとろろに困った方に</li>
 </ul>
 
 ### 主な利用シーン
@@ -33,6 +32,10 @@
 
 
 ## 設計書
+
+<p>テーブル定義書</p>
+https://docs.google.com/spreadsheets/d/1K267tgbBSiMf5SQqqENpshrsKVSqKeHsy0kuVK-HreE/edit?usp=sharing
+<p></p>
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1CSi0AHZtkAlTt-cILcGQfqEY-D_dSFZD3Z3_pmULqSo/edit?usp=sharing

@@ -37,9 +37,9 @@
 			<%= link_to place_review_path(place_id: review.place.id, id: review.id) do %>
 				<h5><%= review.title %></h5>
 				<p><%= simple_format(review.body) %></p>
-				<% review.review_images.each do |image| %>
+			<% end %>
+			<% review.review_images.each do |image| %>
 				<%= attachment_image_tag image, :image, :fill, 80, 80, format: 'jpeg' %>
-				<% end %>
 			<% end %>
 		</div>
 	</div>
