@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :baria_action, only: :confirm
+  # before_action :baria_action, only: :confirm
+  before_action :require_login, only: [:confirm, :index]
   before_action :check_search_params, only: :confirm
   before_action :authenticate_user!, only: [:new, :confirm]
 
@@ -40,21 +41,25 @@ class PlacesController < ApplicationController
   end
 
   private
-
+  def require_login
+    if params[:q].blank?
+      redirect_to root_path, notice: "正しいページからをアスセスしてください"
+    end
+  end
   def search_params
-    params.require(:q).permit!
+     params.require(:q).permit!
   end
 
   def place_params
     params.require(:place).permit(:name, :genre, :prefecture)
   end
 
-  def baria_action
-    q = Place.ransack(params[:q])
-    if q.blank?
-      redirect_to new_place_path, notice: '不正なアクセスです'
-    end
-  end
+  # def baria_action
+  #   q = Place.ransack(params[:q])
+  #   if q.blank?
+  #     redirect_to new_place_path, notice: '不正なアクセスです'
+  #   end
+  # end
 
   # お店の検索で空白入力を防ぐ
   def check_search_params
