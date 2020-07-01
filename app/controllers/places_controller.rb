@@ -6,12 +6,12 @@ class PlacesController < ApplicationController
   def index
     @q = Place.search(search_params)
     @places = @q.result
-    @reviews = []
-    if @places.present?
-      @places.each do |place|
-        @reviews.push(place.reviews)
-      end
-    end
+    # @reviews = []
+    # if @places.present?
+    #   @places.each do |place|
+    #     @reviews.push(place.reviews)
+    #   end
+    # end
   end
 
   def new
@@ -58,7 +58,8 @@ class PlacesController < ApplicationController
 
   # お店の検索で空白入力を防ぐ
   def check_search_params
-    if search_params['name_eq'].blank? || search_params['prefecture_eq'].blank? || search_params['genre_eq'].blank?
+    if search_params['name_eq'].blank? ||
+      search_params['prefecture_eq'].blank? || search_params['genre_eq'].blank?
       redirect_to new_place_path, notice: '必須項目を記入してください'
     end
   end
