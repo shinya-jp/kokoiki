@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   # before_action :baria_action, only: :confirm
-  before_action :require_login, only: :confirm
+  before_action :require_login, only: [:confirm, :index]
   before_action :check_search_params, only: :confirm
   before_action :authenticate_user!, only: [:new, :confirm]
 
@@ -43,7 +43,7 @@ class PlacesController < ApplicationController
   private
   def require_login
     if params[:q].blank?
-      redirect_to new_place_path
+      redirect_to root_path, notice: "正しいページからをアスセスしてください"
     end
   end
   def search_params
