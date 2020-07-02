@@ -14,7 +14,6 @@ class Place < ApplicationRecord
   validates :genre, presence: true
   validates :prefecture, presence: true
 
-# レビューのランキング表示のために一時的にアベレージカラムを作成する
   attr_accessor :average
   def average_review_rate
     self.reviews.average(:rate)
