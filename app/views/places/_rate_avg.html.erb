@@ -1,4 +1,5 @@
-<p class="places__avg_rate"><%= place.reviews.average(:rate).round(1) %>点</p>
+<!-- 平均点数を小数点第一まで -->
+<p class="places__avg_rate"><%= place.average_review_rate.round(1) %>点</p>
 	<div class="places__star" id="review_star-<%= place.id%>">
 	</div>
 <!-- jquery 星の表示 -->
