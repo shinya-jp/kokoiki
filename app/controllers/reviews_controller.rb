@@ -26,6 +26,10 @@ class ReviewsController < ApplicationController
     @review.place_id = @place.id
     @review.user_id = current_user.id
     if @review.save
+      tags = Vision.get_image_data(@review.review_images)
+      tags.each do |tag|
+        @review.tags.create(name: tag)
+      end
       redirect_to place_review_path(place_id: @place.id, id: @review.id)
     else
       render :new
