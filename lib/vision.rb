@@ -7,7 +7,8 @@ module Vision
       Rails.logger.info("image_file:#{image_file.image_id}")
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
       # 画像をbase64にエンコード
-      base64_image = Base64.encode64(open("#{Rails.root}/tmp/uploads/store/#{image_file.image_id}").read)
+      #base64_image = Base64.encode64(open("#{Rails.root}/tmp/uploads/store/#{image_file.image_id}").read)
+      base64_image = Base64.encode64(open("#{Rails.root}/tmp/#{image_file.image_id}").read)
       # APIリクエスト用のJSONパラメータ
       params = {
         requests: [{
