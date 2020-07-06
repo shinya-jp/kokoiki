@@ -4,6 +4,7 @@ require 'net/https'
 module Vision
   class << self
     def get_image_data(image_file)
+      Rails.logger.info("image_file:#{image_file.image_id}")
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
       # 画像をbase64にエンコード
       base64_image = Base64.encode64(open("#{Rails.root}/tmp/uploads/store/#{image_file.image_id}").read)
