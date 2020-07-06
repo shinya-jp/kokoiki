@@ -27,6 +27,7 @@ module Vision
       request = Net::HTTP::Post.new(uri.request_uri)
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
+      Rails.logger.error JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(3)
       # APIレスポンス出力
       JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(3)
     end
