@@ -37,6 +37,13 @@
 
 	// review.show
 
+	&__image-tag span {
+		color: #fff;
+		background-color: #336699;
+		padding: 1px 5px;
+		border-radius: 5px;
+	}
+
 	&__edit {
 		padding-bottom: 10px;
 	}

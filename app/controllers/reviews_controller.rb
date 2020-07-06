@@ -26,10 +26,14 @@ class ReviewsController < ApplicationController
     @review.place_id = @place.id
     @review.user_id = current_user.id
     if @review.save
-      tags = Vision.get_image_data(@review.review_images)
-      tags.each do |tag|
-        @review.tags.create(name: tag)
-      end
+      # コメント部分は複数画像に対応
+      # @review.review_images.each do |ri|
+      #   next if ri.image_id.nil?
+      tags = Vision.get_image_data(@review.review_images[0])
+      # tags = Vision.get_image_data(ri)
+        tags.each do |tag|
+          @review.tags.create(review_image_id: @review.review_images[0].id, name: tag)
+        end
       redirect_to place_review_path(place_id: @place.id, id: @review.id)
     else
       render :new
