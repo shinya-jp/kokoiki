@@ -7,9 +7,8 @@ class Review < ApplicationRecord
   accepts_attachments_for :review_images, attachment: :image
   has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
-  end
+  has_many :tags, dependent: :destroy
+
 
   validates :title, presence: true,
                     length: { maximum: 30 }
@@ -18,5 +17,9 @@ class Review < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 0.5,
   }, presence: true
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 
 end
