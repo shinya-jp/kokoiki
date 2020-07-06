@@ -4,6 +4,12 @@
 	<div class="col-sm-9">
 		<div class="review__show">
 			<%= render 'reviews/post_content', user: @review.user, review: @review%>
+			<div class="review__image-tag">
+				<h5>画像からのカテゴリー</h5>
+	            <% @review.tags.each do |tag| %>
+	                <span><%= tag.name %></span>
+	            <% end %>
+	        </div>
 		</div>
 		<% if @review.user == current_user %>
 			<div class="review__edit offset-sm-10">
