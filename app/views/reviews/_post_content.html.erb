@@ -52,8 +52,8 @@
 				<%= render partial: 'favorites/favorite', locals: {review: review} %>
 			</div>
 		<!-- コメント件数の表示 -->
-			<div class="reviews__comment">
-				<%= review.review_comments.count %>件コメント
+			<div id="comment_count">
+				<%= render partial: 'review_comments/count', locals: {review: review} %>
 			</div>
 		<% end %>
 		<div class="offset-sm-8">
