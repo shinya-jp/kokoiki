@@ -13,7 +13,7 @@
 			<% if current_user == review_comment.user %>
 				<div class="review__comment-delete">
 					<%= link_to "削除する", place_review_review_comment_path(place_id: @place.id, review_id: @review.id, id: review_comment.id),
-					method: :delete, remote: true, class: "btn btn-danger btn-small" %>
+					method: :delete, remote: true, "data-confirm"=> "本当に削除しますか？？", class: "btn btn-danger btn-small" %>
 				</div>
 			<% end %>
 			<div class="review__comment-user-info">

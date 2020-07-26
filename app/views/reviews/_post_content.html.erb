@@ -26,10 +26,12 @@
 		</div>
 	</div>
 	<div class="offset-sm-2">
+		<!-- レビューの点数（星）の表示 -->
 		<div class="reviews__rate">
 			<p><%= review.rate %>点</p>
 		 <div id="review_star-<%= review.id %>"></div>
 		</div>
+		<!-- end -->
 
 	</div>
 	<div class="offset-sm-2">
@@ -45,19 +47,11 @@
 	</div>
 	<div class="reviews__subaction offset-sm-2">
 		<% if signed_in? %>
-			<div class="reviews__favo">
-				<% if review.favorited_by?(current_user) %>
-					<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :delete do %>
-					<i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-					<%= review.favorites.count %>いいね
-					<% end %>
-				<% else %>
-					<%= link_to place_review_favorites_path(place_id: review.place.id, review_id: review.id), method: :post do %>
-					<i class="far fa-heart" aria-hidden="true"></i>
-					<%= review.favorites.count %>いいね
-					<% end %>
-				<% end %>
+		<!-- いいねボタンの表示 -->
+			<div id="favorite_buttons_<%= review.id %>">
+				<%= render partial: 'favorites/favorite', locals: {review: review} %>
 			</div>
+		<!-- コメント件数の表示 -->
 			<div class="reviews__comment">
 				<%= review.review_comments.count %>件コメント
 			</div>
@@ -68,6 +62,7 @@
 	</div>
 </div>
 
+<!-- レビューの点数（星）の表示 -->
 <script>
 	$(document).on('turbolinks:load', function () {
 		$('#review_star-<%= review.id %>').raty({

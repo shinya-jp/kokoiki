@@ -18,7 +18,7 @@ class ReviewCommentsController < ApplicationController
     @review = Review.find(params[:review_id])
     comment = current_user.review_comments.find_by(id: params[:id])
     comment.destroy
-    render :index
+    redirect_to place_review_path(place_id: @place, id: @review)
   end
 
   private

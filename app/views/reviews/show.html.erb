@@ -3,7 +3,7 @@
 	<%= render 'users/profile', user: @review.user %>
 	<div class="col-sm-9">
 		<div class="review__show">
-			<%= render 'reviews/post_content', user: @review.user, review: @review%>
+			<%= render 'reviews/post_content', user: @review.user, review: @review %>
 			<div class="review__image-tag">
 				<h5>画像からのカテゴリー</h5>
 	            <% @review.tags.each do |tag| %>
@@ -17,11 +17,11 @@
 				"data-confirm"=> "本当に削除しますか？", class: "btn btn-danger" %>
 			</div>
 		<% end %>
+			<!-- コメント投稿 -->
+			<%= render partial: 'review_comments/form', locals: { place: @place, review: @review, review_comment: @review_comment } %>
 			<!-- コメント表示 -->
 			<div id="comment_area">
 				<%= render partial: 'review_comments/index', locals: { review_comments: @review_comments } %>
 			</div>
-			<!-- コメント投稿 -->
-			<%= render partial: 'review_comments/form', locals: { place: @place, review: @review, review_comment: @review_comment } %>
 		</div>
 </div>
