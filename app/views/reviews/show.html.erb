@@ -17,54 +17,11 @@
 				"data-confirm"=> "本当に削除しますか？", class: "btn btn-danger" %>
 			</div>
 		<% end %>
-			<!-- コメント投稿 -->
-			<div class="review__comment">
-				<%= form_with(model: [@place, @review, @review_comment], local: true) do |f| %>
-					<div class="row">
-						<div class="col-sm-10">
-							<div class="form-group">
-								<p>コメントを投稿</p>
-								<%= f.text_area :comment, rows:3, :placeholder=> "128文字以内", class: "form-control" %>
-							</div>
-						</div>
-						<div class="col-sm-1 align-self-end">
-							<div class="form-group">
-								<%= f.submit "送信する", class: "btn btn-info" %>
-							</div>
-						</div>
-					</div>
-				<% end %>
-			</div>
 			<!-- コメント表示 -->
-			<div class="review__comments">
-				<% @review_comments.each do |review_comment| %>
-				<div class="review__comment-user">
-					<div class="review__cooment-usere-img col-sm-1">
-						<%= attachment_image_tag review_comment.user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "50x50" %>
-					</div>
-					<div class="offset-sm-2">
-						<div class="review__comment-user-name">
-							<%= link_to user_path(review_comment.user) do %>
-								<b><%= review_comment.user.nickname %></b>
-							<% end %>
-						</div>
-						<% if current_user == review_comment.user %>
-							<div class="review__comment-delete">
-								<%= link_to "削除する", place_review_review_comment_path(place_id: @place.id, review_id: @review.id, id: review_comment.id),
-								method: :delete, class: "btn btn-danger btn-small" %>
-							</div>
-						<% end %>
-						<div class="review__comment-user-info">
-							<%= review_comment.created_at.strftime('%Y/%m/%d/ %H:%M') %>
-						</div>
-					</div>
-				</div>
-				<div class="review__comment-list">
-					<div class="offset-sm-2">
-						<%= simple_format(review_comment.comment) %>
-					</div>
-				</div>
-				<% end %>
+			<div id="comment_area">
+				<%= render partial: 'review_comments/index', locals: { review_comments: @review_comments } %>
 			</div>
+			<!-- コメント投稿 -->
+			<%= render partial: 'review_comments/form', locals: { place: @place, review: @review, review_comment: @review_comment } %>
 		</div>
 </div>
