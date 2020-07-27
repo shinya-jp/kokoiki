@@ -19,7 +19,10 @@
 			<td><%= user.reviews.count %></td>
 
 
-			<td><%= render 'follow',user: user %></td>
+			<td><% unless current_user == user %>
+					<%= render 'follow',user: user %>
+				<% end %>
+			</td>
 		</tr>
 	</tbody>
 	<% end %>
