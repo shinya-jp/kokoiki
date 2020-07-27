@@ -41,5 +41,5 @@ set :repo_url, "git@github.com:shinya-jp/kokoiki.git"
 set :deploy_to, "/home/ec2-user/kokoiki"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public"
 
