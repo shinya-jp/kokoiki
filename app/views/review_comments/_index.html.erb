@@ -2,7 +2,7 @@
 	<% review_comments.each do |review_comment| %>
 	<div class="review__comment-user">
 		<div class="review__cooment-usere-img col-sm-1">
-			<%= attachment_image_tag review_comment.user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "50x50" %>
+			<%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "no_image.jpg" %>
 		</div>
 		<div class="offset-sm-2">
 			<div class="review__comment-user-name">
