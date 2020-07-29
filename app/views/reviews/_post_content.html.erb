@@ -2,7 +2,7 @@
 	<%= link_to user_path(user) do %>
 		<div class="reviews__profile">
 			<div class="reviews__profile-img col-sm-1">
-				<%= attachment_image_tag user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "70x70" %>
+				<%= attachment_image_tag user, :profile_image, :fill, 70, 70, format: 'jpeg',fallback: "no_image.jpg" %>
 			</div>
 			<div class="offset-sm-2">
 				<div class="reviews__profile-name">
