@@ -1,0 +1,11 @@
+<div class="row">
+	<%= render 'profile', user: @user %>
+	<div class="col-sm-9">
+		<h2>フォローリスト</h2>
+		<% if @users.count > 0 %>
+			<%= render 'user_list', user: @user, users: @users %>
+		<% else %>
+			<p>ユーザーがいません</p>
+		<% end %>
+	</div>
+</div>
