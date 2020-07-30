@@ -1,0 +1,29 @@
+<table class="follow__list">
+	<thead>
+		<tr>
+			<th>プロフィール写真</th>
+			<th>ニックネーム</th>
+			<th>年代</th>
+			<th>投稿数</th>
+			<th></th>
+		</tr>
+	</thead>
+	<% users.each do |user| %>
+	<tbody>
+		<tr>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 65, 65, format: "jpeg", fallback: "no_image.jpg" %></td>
+			<td><%= link_to user_path(user) do %>
+				<%= user.nickname%>
+				<% end %></td>
+			<td><%= user.age_decade %></td>
+			<td><%= user.reviews.count %></td>
+
+
+			<td><% unless current_user == user %>
+					<%= render 'follow',user: user %>
+				<% end %>
+			</td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
