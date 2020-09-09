@@ -1,0 +1,27 @@
+<%= render 'layouts/error_messages', model: @review_comment %>
+<div class="row">
+	<%= render 'users/profile', user: @review.user %>
+	<div class="col-sm-9">
+		<div class="review__show">
+			<%= render 'reviews/post_content', user: @review.user, review: @review%>
+			<div class="review__image-tag">
+				<h5>画像からのカテゴリー</h5>
+	            <% @review.tags.each do |tag| %>
+	                <span><%= tag.name %></span>
+	            <% end %>
+	        </div>
+		</div>
+		<% if @review.user == current_user %>
+			<div class="review__edit offset-sm-10">
+				<%= link_to "レビュー削除", place_review_path(place_id: @review.place.id, id: @review.id), method: :delete,
+				"data-confirm"=> "本当に削除しますか？", class: "btn btn-danger" %>
+			</div>
+		<% end %>
+			<!-- コメント投稿 -->
+			<%= render partial: 'review_comments/form', locals: { place: @place, review: @review, review_comment: @review_comment } %>
+			<!-- コメント表示 -->
+			<div id="comment_area">
+				<%= render partial: 'review_comments/index', locals: { review_comments: @review_comments } %>
+			</div>
+		</div>
+</div>
